@@ -1,0 +1,17 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  outline: none;
+  font-family: 'IranSans';
+}
+
+.header {
+  direction: rtl;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    direction: rtl;
+  }
+}
