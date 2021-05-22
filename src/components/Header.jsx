@@ -5,6 +5,7 @@ import Modal from './LoginModal';
 import Hamburger from './HamburgerIcon';
 import { Link } from 'react-router-dom';
 
+
 const navigation = [
   { name: 'آیتم', href: '/item1', current: true },
   { name: 'آیتم', href: '/item2', current: false },
@@ -34,7 +35,7 @@ const Header = () => {
                 <div className="flex-shrink-1 flex items-center">
                   <Link to="/">
                     <img
-                      className="lg:block h-16 w-auto pr-10"
+                      className="lg:block h-16 w-auto pr-5"
                       src={Logo}
                       alt="Workflow"
                     />

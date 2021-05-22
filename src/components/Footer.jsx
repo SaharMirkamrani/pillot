@@ -6,6 +6,7 @@ import {
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
 
+
 const Footer = () => {
   return (
     <>
@@ -44,7 +45,7 @@ const Footer = () => {
               className="mt-4 inline-block lg:mt-0 hover:text-white mr-4"
             >
               <div className="flex items-center flex-no-shrink text-white mr-6 transition duration-500 ease-in-out hover:text-black">
-                <FontAwesomeIcon icon={faLinkedinIn} />
+							<FontAwesomeIcon icon={faLinkedinIn} />
               </div>
             </a>
           </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { TiTimes } from "react-icons/ti";
 
 const Login = ({ setShowModal }) => {
   const handleFormSubmit = (e) => {
@@ -20,9 +21,7 @@ const Login = ({ setShowModal }) => {
           className="p-1 mb-10 mt-2 mr-auto bg-transparent border-0 text-black opacity-8 float-left text-3xl leading-none font-semibold outline-none focus:outline-none"
           onClick={() => setShowModal(false)}
         >
-          <span className="bg-transparent text-gray-400 hover:text-gray-700 h-6 w-6 text-xl block outline-none ">
-            x
-          </span>
+          <TiTimes className="text-gray-500 hover:text-gray-700" />
         </button>
       </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Login from './Login';
 import {useLocation} from "react-router-dom";
 import Signup from './Signup';
+import { FiLogIn } from "react-icons/fi";
 
 export default function Modal() {
   const [showModal, setShowModal] = React.useState(false);
@@ -14,7 +15,10 @@ export default function Modal() {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        ورود
+        <div className="flex flex-row items-center justify-between">
+        <FiLogIn className="pl-1 text-xl" />  <p className="pb-1">ورود</p> 
+        </div>
+        
       </button>
       {showModal ? (
         <>
