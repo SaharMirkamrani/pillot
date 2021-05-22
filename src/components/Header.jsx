@@ -1,15 +1,14 @@
 import { Disclosure, Menu } from '@headlessui/react';
 import Logo from '../assets/logo.png';
 import styles from '../styles/main.module.css';
-import Modal from './LoginModal';
+import Modal from './SignUp';
 import Hamburger from './HamburgerIcon';
 import { Link } from 'react-router-dom';
 
-
 const navigation = [
-  { name: 'آیتم', href: '/item1', current: true },
-  { name: 'آیتم', href: '/item2', current: false },
-  { name: 'آیتم', href: '/item3', current: false },
+  { name: ' آیتم یک', href: '/item1', current: true },
+  { name: 'آیتم دو', href: '/item2', current: false },
+  { name: 'آیتم سه', href: '/item3', current: false },
 ];
 
 function classNames(...classes) {
@@ -67,11 +66,7 @@ const Header = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-0 relative">
-                  {({ open }) => (
-                    <div>
-                      <Modal />
-                    </div>
-                  )}
+                  {({ open }) => <Modal />}
                 </Menu>
               </div>
             </div>
