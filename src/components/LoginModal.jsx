@@ -1,8 +1,12 @@
 import React from 'react';
 import Login from './Login';
+import {useLocation} from "react-router-dom";
+import Signup from './Signup';
 
 export default function Modal() {
   const [showModal, setShowModal] = React.useState(false);
+	const location = useLocation();
+	console.log(location.pathname)
   return (
     <>
       <button
@@ -16,10 +20,9 @@ export default function Modal() {
         <>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
               <div className="relative sm:w-1/2 lg:w-4/12 my-6 mx-auto max-w-2xl">
-                {/*content*/}
                 <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                  {/*body*/}
                     <Login setShowModal={setShowModal} />
+										{location.pathname === "/signup" && console.log("hey") }
                 </div>
               </div>
             </div>

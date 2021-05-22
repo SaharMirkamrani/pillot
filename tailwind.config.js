@@ -35,10 +35,15 @@ module.exports = {
     fontFamily: {
       regular: ['Vazir', 'IranSansRegular'],
     },
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'height': 'height',
+        'spacing': 'margin, padding',
+      }
+    },
   },
   variants: {
-    extend: { ringColor: ['hover', 'active'] },
+    extend: { ringColor: ['hover', 'active'],transitionProperty: ['hover', 'focus'], },
     backgroundColor: ['hover', 'focus'],
     borderColor: ['focus', 'hover'],
   },

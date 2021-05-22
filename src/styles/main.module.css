@@ -4,6 +4,7 @@
   margin: 0px;
   outline: none;
   font-family: 'IranSans';
+  direction: rtl;
 }
 
 .header {

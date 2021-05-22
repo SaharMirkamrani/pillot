@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = ({ setShowModal }) => {
+const Signup = ({ setShowModal }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -20,7 +20,7 @@ const Login = ({ setShowModal }) => {
           className="p-1 mb-10 mt-2 mr-auto bg-transparent border-0 text-black opacity-8 float-left text-3xl leading-none font-semibold outline-none focus:outline-none"
           onClick={() => setShowModal(false)}
         >
-          <span className="bg-transparent text-gray-400 hover:text-gray-700 h-6 w-6 text-xl block outline-none ">
+          <span className="bg-transparent text-gray-700 h-6 w-6 text-xl block outline-none ">
             x
           </span>
         </button>
@@ -52,13 +52,13 @@ const Login = ({ setShowModal }) => {
             {' '}
             رمز عبور خود را فراموش کرده اید؟{' '}
             <Link to="/resetPass">
-
-            <button
+              <button
                 className="bg-transparent border-0 leading-none font-medium outline-none focus:outline-none"
                 onClick={() => setShowModal(false)}
               >
-								<p className="text-xs text-indigo-500 inline">بازیابی رمز عبور</p>
-                
+                <p className="text-xs text-indigo-500 inline">
+                  بازیابی رمز عبور
+                </p>
               </button>
             </Link>
           </p>
@@ -73,8 +73,7 @@ const Login = ({ setShowModal }) => {
                 className="bg-transparent border-0 leading-none font-medium outline-none focus:outline-none"
                 onClick={() => setShowModal(false)}
               >
-								<p className="text-xs text-indigo-500 inline">ثبت نام</p>
-                
+                <p className="text-xs text-indigo-500 inline">ثبت نام</p>
               </button>
             </Link>
           </p>
@@ -94,4 +93,4 @@ const Login = ({ setShowModal }) => {
   );
 };
 
-export default Login;
+export default Signup;
