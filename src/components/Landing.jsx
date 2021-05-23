@@ -1,11 +1,13 @@
-import BackgroundLanding from "./BackgroundLanding";
-import Categories from "./Categories";
+import BackgroundLanding from './BackgroundLanding';
+import Categories from './Categories';
 
 const Landing = () => {
-  return <><div>
-    <BackgroundLanding />
-    <Categories />
-    </div></>;
+  return (
+    <>
+      <BackgroundLanding />
+      <Categories />
+    </>
+  );
 };
 
 export default Landing;

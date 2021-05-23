@@ -1,7 +1,8 @@
 import { Disclosure, Menu } from '@headlessui/react';
 import Logo from '../assets/logo.png';
 import styles from '../styles/main.module.css';
-import Modal from './Login';
+import Login from './Login';
+import SignUp from './SignUp';
 import Hamburger from './HamburgerIcon';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Header = () => {
+const Header = ({token}) => {
   return (
     <Disclosure as="nav" className="bg-white shadow-md sticky top-0 z-50">
       {() => (
@@ -66,7 +67,7 @@ const Header = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-0 relative">
-                  {({ open }) => <Modal />}
+                  {token !== "" ? <Login /> : <SignUp />}
                 </Menu>
               </div>
             </div>

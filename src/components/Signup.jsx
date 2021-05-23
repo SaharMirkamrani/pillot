@@ -192,13 +192,6 @@ const SignUp = () => {
                     </div>
                   </form>
                 </div>
-
-                {/* <Signup
-                  setShowModal={setShowModal}
-                  handleInputChange={handleInputChange}
-                  setSignUpValues={setSignUpValues}
-                  signUpValues={signUpValues}
-                /> */}
               </div>
             </div>
           </div>
