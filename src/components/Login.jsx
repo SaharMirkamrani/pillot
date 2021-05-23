@@ -57,7 +57,7 @@ const Login = () => {
   return (
     <>
       <button
-        className="bg-yellow text-white hover:bg-lightYellow font-semibold text-md px-8 py-2.5 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="bg-yellow text-white hover:bg-lightYellow font-semibold text-md px-8 py-2.5 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
         type="button"
         onClick={() => setShowModal(true)}
       >
