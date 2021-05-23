@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { TiTimes } from 'react-icons/ti';
 import { FiLogIn } from 'react-icons/fi';
 import ValidationError from './ValidationError';
+import axios from 'axios';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
@@ -36,10 +37,22 @@ const Login = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setLoginValues({ phone: '', password: '' })
+    axios
+      .post('http://site.pillot.ir/admin/Customers/API/_login', loginValues, {
+        headers: {
+          token: 'test',
+          'Access-Control-Allow-Origin': '*',
+        },
+      })
+      .then((response) => {
+        console.log(response.data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      setLoginValues({ phone: '', password: '' })
   };
-
-  console.log(loginValues)
+  console.log(loginValues);
 
   return (
     <>
@@ -113,9 +126,7 @@ const Login = () => {
                         }
                       />
                       {passwordError && (
-                        <ValidationError
-                          text={'پسورد باید 4 رقم باشد.'}
-                        />
+                        <ValidationError text={'پسورد باید 4 رقم باشد.'} />
                       )}
                     </div>
                     <div className="flex justify-start flex-row items-center mt-2">
@@ -141,6 +152,8 @@ const Login = () => {
                         حساب کاربری ندارید؟{' '}
                         <Link to="/signup">
                           <button
+                            type="submit"
+                            onSubmit={handleFormSubmit}
                             className="bg-transparent border-0 leading-none font-medium outline-none focus:outline-none"
                             onClick={() => setShowModal(false)}
                           >

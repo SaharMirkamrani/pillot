@@ -1,7 +1,7 @@
 import { Disclosure, Menu } from '@headlessui/react';
 import Logo from '../assets/logo.png';
 import styles from '../styles/main.module.css';
-import Modal from './SignUp';
+import Modal from './Login';
 import Hamburger from './HamburgerIcon';
 import { Link } from 'react-router-dom';
 
