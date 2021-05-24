@@ -5,7 +5,7 @@ import { FiLogIn } from 'react-icons/fi';
 import ValidationError from './ValidationError';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ token }) => {
   const [showModal, setShowModal] = useState(false);
   const [mobileError, setMobileError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
@@ -19,39 +19,59 @@ const Login = () => {
   };
 
   const validateMobilephone = (input) => {
-    let mobile = /^\d{11}$/;
+    let mobile = /^09{1}[\d]{9}$/;
     if (mobile.test(input)) {
       setMobileError(false);
+      return input;
     } else {
       setMobileError(true);
+      return false;
     }
   };
 
   const validatePassword = (pass) => {
     if (pass.length !== 4) {
       setPasswordError(true);
+      return false;
     } else {
       setPasswordError(false);
+      return pass;
     }
   };
 
+  const handleTimer = () => {
+    const timerId = setTimeout(()=>"hey" ,1000)
+    console.log(timerId)
+  }
+
+  console.log(handleTimer())
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post('http://site.pillot.ir/admin/Customers/API/_login', loginValues, {
-        headers: {
-          token: 'test',
-          'Access-Control-Allow-Origin': '*',
-        },
-      })
-      .then((response) => {
-        console.log(response.data.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      setLoginValues({ phone: '', password: '' })
+    validateMobilephone(loginValues.phone);
+    validatePassword(loginValues.password);
+    if (validateMobilephone(loginValues.phone) === false) return;
+    if (validatePassword(loginValues.password) === false) return;
+    setLoginValues({ phone: '', password: '' });
+
+    setShowModal(false);
+
+    // axios
+    //   .post('http://site.pillot.ir/admin/Customers/API/_login', loginValues, {
+    //     headers: {
+    //       token: 'test',
+    //       'Access-Control-Allow-Origin': '*',
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
+    //   setLoginValues({ phone: '', password: '' })
   };
+
   console.log(loginValues);
 
   return (
@@ -85,7 +105,7 @@ const Login = () => {
 
                   <form onSubmit={handleFormSubmit}>
                     <div>
-                      <label htmlFor="email" className="text-sm text-gray-600">
+                      <label htmlFor="number" className="text-sm text-gray-600">
                         شماره موبایل
                       </label>
                       <input
@@ -102,50 +122,55 @@ const Login = () => {
                       />
                       {mobileError && (
                         <ValidationError
-                          text={'شماره موبایل باید 11 رقم باشد.'}
+                          text={'لطفا شماره موبایل صحیح را وارد کنید.'}
                         />
                       )}
                     </div>
-                    <div>
-                      <label
-                        htmlFor="password"
-                        className="text-sm text-gray-600"
-                      >
-                        رمز عبور
-                      </label>
-                      <input
-                        onChange={handleInputChange}
-                        value={loginValues.password}
-                        required
-                        name="password"
-                        type="password"
-                        className={`w-full mt-1 p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
-                        id="password"
-                        onBlurCapture={() =>
-                          validatePassword(loginValues.password)
-                        }
-                      />
-                      {passwordError && (
-                        <ValidationError text={'پسورد باید 4 رقم باشد.'} />
+                    <div className="flex justify-around items-center mt-1">
+                      {!token && (
+                        <button
+                          className={`m-1 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150`}
+                          type="submit"
+                          onClick={handleFormSubmit}
+                        >
+                        کد تائید
+                        </button>
                       )}
+
+                      <div>
+                        <label
+                          htmlFor="password"
+                          className="text-sm text-gray-600"
+                        >
+                          {token ? 'رمز عبور' : 'کد تائید'}
+                        </label>
+                        <input
+                          onChange={handleInputChange}
+                          value={loginValues.password}
+                          required
+                          name="password"
+                          type="password"
+                          className={`w-full m-1 p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
+                          id="password"
+                          onBlurCapture={() =>
+                            validatePassword(loginValues.password)
+                          }
+                        />
+                        {passwordError && (
+                          <ValidationError
+                            text={'لطفا رمز عبور صحیح وارد کنید.'}
+                          />
+                        )}
+                      </div>
                     </div>
+                    
                     <div className="flex justify-start flex-row items-center mt-2">
-                      <p className="text-xs text-gray-700">
+                      <p className="text-sm text-gray-600">
                         {' '}
-                        رمز عبور خود را فراموش کرده اید؟{' '}
-                        <Link to="/resetPass">
-                          <button
-                            className="bg-transparent border-0 leading-none font-medium outline-none focus:outline-none"
-                            onClick={() => setShowModal(false)}
-                          >
-                            <p className="text-xs text-indigo-500 inline">
-                              بازیابی رمز عبور
-                            </p>
-                          </button>
-                        </Link>
+                        ارسال مجدد کد تائید در 
                       </p>
                     </div>
-
+{/* 
                     <div className="flex justify-start flex-row items-center mt-2">
                       <p className="text-xs text-gray-700">
                         {' '}
@@ -163,15 +188,18 @@ const Login = () => {
                           </button>
                         </Link>
                       </p>
-                    </div>
+                    </div> */}
 
                     <div className="flex justify-end items-center mt-1">
                       <button
-                        className="bg-yellow text-white hover:bg-lightYellow font-semibold text-md px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        className={` ${
+                          loginValues.password.length !== 4 &&
+                          'opacity-60 cursor-not-allowed'
+                        } mt-3 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
                         type="submit"
-                        onClick={() => setShowModal(false)}
+                        onClick={handleFormSubmit}
                       >
-                        ورود
+                        {!token ? "ثبت نام" : "ورود"}
                       </button>
                     </div>
                   </form>
