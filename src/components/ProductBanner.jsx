@@ -3,43 +3,19 @@ import pic from '../assets/sample.jpg';
 const ProductBanner = () => {
   return (
     <>
-      <div className="p-10 m-auto flex flex-row justify-center border-r border-b border-l border-gray-400">
-        <div className="bg-white rounded w-5/6 flex items-right flex-col justify-between">
-          <div className="p-3">
-            <h3 className="text-md text-gray-800">
-              {' '}
+      <div className="w-full sm:w-1/2 lg:w-1/3 p-10 my-2">
+        <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-2xl transition duration-300">
+          <img src={pic} alt="thumbnail" className="w-full" />
+          <div className="px-6 pt-4 pb-10 relative">
+            <div className="font-semibold text-lg mb-2 text-gray-600">
               آپارتمان 500 متری در الهیه
-            </h3>
-            <div>
-              <p className="text-sm font-medium text-gray-500 leading-none pt-5">
-                توافقی
-              </p>
-              <p className="text-sm text-gray-400">امروز</p>
             </div>
+            <p className="text-gray-600 text-base">توافقی</p>
+            <p className="text-yellow text-base text-xs absolute left-6">امروز</p>
           </div>
-        </div>
-        <div className="rounded-t rounded-t-none rounded-l overflow-hidden bg-black w-64">
-          <img src={pic} alt="itemPic" className="" />
-        </div>
-      </div>
-      
-      {/* 
-      <div class="p-10">
-      <div className=" w-full lg:max-w-full lg:flex">
 
-      <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-        <div className="flex items-center">
-          <div className="text-sm">
-            <p className="text-gray-900 leading-none">توافقی</p>
-            <p className="text-gray-600">امروز</p>
-          </div>
         </div>
       </div>
-      <div className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-      <img src={pic} alt="itemPic" />
-      </div>
-    </div>
-  </div> */}
     </>
   );
 };

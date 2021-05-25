@@ -1,11 +1,11 @@
 import BackgroundLanding from '../components/BackgroundLanding';
-import SingleCategory from '../components/ProductBanner';
+import Cards from '../components/Cards'
 
 const BuyandSell = () => {
   return (
     <>
       <BackgroundLanding />
-			<SingleCategory />
+			<Cards />
     </>
   );
 };
