@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     ringColor: {
       lightYellow: '#fff799',
+      blue: colors.blue,
     },
     colors: {
       yellow: '#f2b809',
