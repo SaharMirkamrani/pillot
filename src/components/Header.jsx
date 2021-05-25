@@ -76,7 +76,7 @@ const Header = ({ token }) => {
               enter="transition-opacity duration-500"
               enterFrom="opacity-0"
               enterTo="opacity-100"
-              leave="transition-opacity duration-250"
+              leave="transition-opacity duration-500"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
@@ -88,9 +88,9 @@ const Header = ({ token }) => {
                       key={item.name}
                       className={classNames(
                         item.current
-                          ? 'bg-lightestYellow text-gray-600'
-                          : 'text-gray-400 hover:bg-gray-100 hover:text-gray-600 font-regular bg-opacity-30',
-                        'block px-3 py-2 rounded-md text-sm font-medium font-regular text-center'
+                          ? 'text-yellow'
+                          : 'text-gray-400 font-regular bg-opacity-30',
+                        'block px-3 py-2 rounded-md text-sm font-medium font-regular hover:text-gray-600 text-center'
                       )}
                       aria-current={item.current ? 'page' : undefined}
                     >

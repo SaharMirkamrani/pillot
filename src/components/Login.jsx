@@ -77,12 +77,12 @@ const Login = ({ token }) => {
   return (
     <>
       <button
-        className="bg-yellow text-white hover:bg-lightYellow font-semibold text-md px-8 py-2.5 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
+        className="bg-lightYellow text-white hover:bg-yellow font-semibold text-md px-8 py-2.5 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
         type="button"
         onClick={() => setShowModal(true)}
       >
         <div className="flex flex-row items-center justify-between">
-          <FiLogIn className="pl-1 text-xl" /> <p className="pb-1">ورود</p>
+          <FiLogIn className="pl-1 text-2xl" /> <p className="pb-1">ورود</p>
         </div>
       </button>
       {showModal ? (
