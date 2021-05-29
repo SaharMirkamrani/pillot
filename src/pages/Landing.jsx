@@ -1,5 +1,5 @@
-import BackgroundLanding from './BackgroundLanding';
-import Categories from './Categories';
+import BackgroundLanding from '../components/BackgroundLanding';
+import Categories from '../components/Categories';
 
 const Landing = () => {
   return (

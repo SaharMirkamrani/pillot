@@ -8,7 +8,7 @@ const Categories = () => {
       <div className="flex flex-col md:flex-row justify-center my-10">
         <div>
           <Link to="/buyandsell">
-            <div className="max-w-sm md:px-28 bg-white shadow-xl rounded-xl py-16 my-5 m-auto flex flex-col justify-around hover:bg-yellow hover:text-white transition duration-500 hover:shadow md:mx-10">
+            <div className="max-w-sm w- md:px-28 bg-white shadow-xl rounded-xl py-16 m-5 m-auto flex flex-col justify-around hover:bg-yellow hover:text-white transition duration-500 hover:shadow md:mx-10">
               <GiHouseKeys className="pl-1 text-4xl text-center m-auto" />
               <h2 className="text-xl font-semibold text-center pt-6">
                 خرید و فروش

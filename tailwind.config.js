@@ -4,6 +4,10 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false,
   theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+    },
     ringColor: {
       lightYellow: '#fff799',
       blue: colors.blue,
@@ -37,14 +41,22 @@ module.exports = {
       regular: ['Vazir', 'IranSansRegular'],
     },
     extend: {
+      animation: {
+        bounce200: 'bounce 1s infinite 200ms',
+        bounce400: 'bounce 1s infinite 400ms',
+      },
       transitionProperty: {
-        'height': 'height',
-        'spacing': 'margin, padding',
-      }
+        height: 'height',
+        spacing: 'margin, padding',
+      },
     },
   },
   variants: {
-    extend: { ringColor: ['hover', 'active'],transitionProperty: ['hover', 'focus'], },
+    extend: {
+      ringColor: ['hover', 'active'],
+      transitionProperty: ['hover', 'focus'],
+      
+    },
     backgroundColor: ['hover', 'focus'],
     borderColor: ['focus', 'hover'],
   },

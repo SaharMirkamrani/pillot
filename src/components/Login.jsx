@@ -129,7 +129,7 @@ const Login = ({ token }) => {
                     <div className="flex justify-around items-center mt-1">
                       {!token && (
                         <button
-                          className={`m-1 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150`}
+                          className={`mx-1 mb-2 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150`}
                           type="submit"
                           onClick={handleFormSubmit}
                         >
@@ -170,7 +170,8 @@ const Login = ({ token }) => {
                         ارسال مجدد کد تائید در 
                       </p>
                     </div>
-{/* 
+                    
+                  {/* 
                     <div className="flex justify-start flex-row items-center mt-2">
                       <p className="text-xs text-gray-700">
                         {' '}
