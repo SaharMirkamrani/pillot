@@ -9,7 +9,7 @@ const Login = ({ token }) => {
   const [showModal, setShowModal] = useState(false);
   const [mobileError, setMobileError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [loginValues, setLoginValues] = useState({ phone: '', password: '' });
+  const [loginValues, setLoginValues] = useState({ phone: '' });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -40,36 +40,39 @@ const Login = ({ token }) => {
   };
 
   const handleTimer = () => {
-    const timerId = setTimeout(()=>"hey" ,1000)
-    console.log(timerId)
-  }
+    const timerId = setTimeout(() => 'hey', 1000);
+  };
 
-  console.log(handleTimer())
+  console.log(handleTimer());
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     validateMobilephone(loginValues.phone);
-    validatePassword(loginValues.password);
+    // validatePassword(loginValues.password);
     if (validateMobilephone(loginValues.phone) === false) return;
-    if (validatePassword(loginValues.password) === false) return;
-    setLoginValues({ phone: '', password: '' });
+    // if (validatePassword(loginValues.password) === false) return;
+    setLoginValues({ phone: '' });
+
+    axios
+      .post(
+        'http://site.pillot.ir/admin/Customers/API/_startloginregister',
+        loginValues,
+        {
+          headers: {
+            token: 'test',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    setLoginValues({ phone: '' });
 
     setShowModal(false);
-
-    // axios
-    //   .post('http://site.pillot.ir/admin/Customers/API/_login', loginValues, {
-    //     headers: {
-    //       token: 'test',
-    //       'Access-Control-Allow-Origin': '*',
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    //   setLoginValues({ phone: '', password: '' })
   };
 
   console.log(loginValues);
@@ -116,9 +119,9 @@ const Login = ({ token }) => {
                         type="number"
                         className={`w-full mt-1  p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
                         id="number"
-                        onBlurCapture={() =>
-                          validateMobilephone(loginValues.phone)
-                        }
+                        // onBlurCapture={() =>
+                        //   validateMobilephone(loginValues.phone)
+                        // }
                       />
                       {mobileError && (
                         <ValidationError
@@ -126,7 +129,7 @@ const Login = ({ token }) => {
                         />
                       )}
                     </div>
-                    <div className="flex justify-around items-center mt-1">
+                    {/* <div className="flex justify-around items-center mt-1">
                       {!token && (
                         <button
                           className={`mx-1 mb-2 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150`}
@@ -162,45 +165,25 @@ const Login = ({ token }) => {
                           />
                         )}
                       </div>
-                    </div>
-                    
-                    <div className="flex justify-start flex-row items-center mt-2">
+                    </div> */}
+
+                    {/* <div className="flex justify-start flex-row items-center mt-2">
                       <p className="text-sm text-gray-600">
                         {' '}
                         ارسال مجدد کد تائید در 
-                      </p>
-                    </div>
-                    
-                  {/* 
-                    <div className="flex justify-start flex-row items-center mt-2">
-                      <p className="text-xs text-gray-700">
-                        {' '}
-                        حساب کاربری ندارید؟{' '}
-                        <Link to="/signup">
-                          <button
-                            type="submit"
-                            onSubmit={handleFormSubmit}
-                            className="bg-transparent border-0 leading-none font-medium outline-none focus:outline-none"
-                            onClick={() => setShowModal(false)}
-                          >
-                            <p className="text-xs text-indigo-500 inline">
-                              ثبت نام
-                            </p>
-                          </button>
-                        </Link>
                       </p>
                     </div> */}
 
                     <div className="flex justify-end items-center mt-1">
                       <button
-                        className={` ${
-                          loginValues.password.length !== 4 &&
-                          'opacity-60 cursor-not-allowed'
-                        } mt-3 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
+                        className={`
+                          // loginValues.password.length !== 4 &&
+                          // 'opacity-60 cursor-not-allowed'
+                        mt-3 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
                         type="submit"
                         onClick={handleFormSubmit}
                       >
-                        {!token ? "ثبت نام" : "ورود"}
+                        ورود
                       </button>
                     </div>
                   </form>
