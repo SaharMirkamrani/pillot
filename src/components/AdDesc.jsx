@@ -35,7 +35,7 @@ const AdDesc = () => {
           </div>
         </div>
         <div className="sm:w-full text-center sm:text-right mt-10 px-4 md:flex md:justify-around">
-          <div className="md:w-8/12">
+          <div className="md:w-8/12 pr-20">
             <h2 className="font-semibold text-xl my-1">
               آپارتمان 500 متری در الهیه
             </h2>
@@ -44,15 +44,14 @@ const AdDesc = () => {
             </p>
             <h3 className="font-semibold text-lg my-1">توضیحات</h3>
             <p>
-              فرشته( برج باغ ) ١١ طبقه کلا ٤٨ واحد طبقه دهم، نقشه و ویوی عالی ٤
+              فرشته ( برج باغ ) ١١ طبقه کلا ٤٨ واحد طبقه دهم، نقشه و ویوی عالی ٤
               پارکینگ سندی کنار هم بصورت باکس ٧٠٠ متر لابی دوبلکس، روف گاردن ٤
               فصل، سالن اجتماعات،استخر، سونا، جکوزی، سالن جیم، سالن بیلیارد،
               جاده سلامت، ٤ لاین اسانسور، مشاور شما: فربُد
             </p>
-						<h3 className="font-semibold text-lg my-1">قیمت</h3>
-						<p>توافقی</p>
+            <h3 className="font-semibold text-lg my-1">قیمت</h3>
+            <p>توافقی</p>
           </div>
-
           <div className="bg-yellow rounded-xl my-5 w-90 h-16 flex justify-around items-center m-auto md:flex-col md:w-32 md:h-72 justify-between">
             <div className="text-white hover:text-black transition duration-300 text-2xl flex flex-col items-center justify-between cursor-pointer">
               <p className="text-sm">اشتراک گذاری</p>

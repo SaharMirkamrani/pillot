@@ -43,7 +43,8 @@ module.exports = {
     },
     extend: {
       animation: {
-        bounce200: 'bounce 1s infinite 200ms',
+        bounce: 'bounce 1s infinite 400ms',
+        bounce200: 'bounce .5s infinite 200ms',
         bounce400: 'bounce 1s infinite 400ms',
       },
       transitionProperty: {
