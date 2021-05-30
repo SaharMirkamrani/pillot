@@ -18,7 +18,7 @@ const SearchBar = () => {
             placeholder="جستجوی آگهی..."
           />
           <div>
-            <button class="bg-lightYellow hover:bg-yellow text-white font-semibold mx-2 py-2 px-4 rounded-lg shadow-md inline-flex items-center hover:shadow transition duration-300">
+            <button class="focus:outline-none bg-lightYellow hover:bg-yellow text-white font-semibold mx-2 py-2 px-4 rounded-lg shadow-md inline-flex items-center hover:shadow transition duration-300">
               <span className="px-1">بگرد</span>
               <FiSearch />
             </button>

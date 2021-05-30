@@ -6,7 +6,8 @@ import Footer from './components/Footer';
 import BuyandSell from './pages/BuyandSell';
 import AdPage from './pages/AdPage';
 import NotFound from './pages/NotFound';
-import Loader from './components/Loader'
+import Loader from './components/Loader';
+import ScrollToTopBtn from './components/ScrollToTopBtn';
 
 const App = () => {
   const [token, setToken] = useState("");
@@ -25,6 +26,7 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route component={NotFound} />
         </Switch>
+        <ScrollToTopBtn />
         <Footer />
       </Router>
     </div>

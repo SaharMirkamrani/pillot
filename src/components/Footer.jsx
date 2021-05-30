@@ -15,7 +15,7 @@ const Footer = () => {
           <p className="text-md text-white">تمام حقوق محفوظ است.</p>
         </div>
         <div className="flex-grow flex items-center w-auto h-auto text-2xl relative">
-          <div className="sm:absolute sm:left-10 sm:pl-10 lg:mt-2">
+          <div className="sm:absolute sm:left-20 sm:pl-10 lg:mt-2">
             <a
               href="#item1"
               className="mt-4 inline-block lg:mt-0 hover:text-white mr-4"

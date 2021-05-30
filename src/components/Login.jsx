@@ -99,7 +99,7 @@ const Login = ({ token }) => {
                       ورود به سایت
                     </h4>
                     <button
-                      className="p-1 mb-10 mt-2 mr-auto bg-transparent border-0 text-black opacity-8 float-left text-3xl leading-none font-semibold outline-none focus:outline-none"
+                      className="p-1 mb-10 mt-2 mr-auto bg-transparent border-0 text-black float-left text-3xl leading-none font-semibold outline-none focus:outline-none"
                       onClick={() => setShowModal(false)}
                     >
                       <TiTimes className="text-gray-500 hover:text-gray-700" />

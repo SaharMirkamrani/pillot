@@ -20,7 +20,6 @@ const Header = ({ token }) => {
   return (
     <Disclosure as="nav" className="bg-white shadow-md sticky top-0 z-50">
       {({ open }) => (
-        <div className={styles.header}>
           <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-18">
             <div className="relative flex items-center justify-between h-20">
               <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
@@ -101,7 +100,6 @@ const Header = ({ token }) => {
               </Disclosure.Panel>
             </Transition>
           </div>
-        </div>
       )}
     </Disclosure>
   );
