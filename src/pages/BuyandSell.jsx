@@ -1,14 +1,18 @@
 import BackgroundLanding from '../components/BackgroundLanding';
 import Cards from '../components/Cards';
-import SearchBar from '../components/SearchBar';
 import LoadMore from '../components/LoadMore';
+import SearchBar from '../components/SearchBar';
+import Sidebar from '../components/Sidebar';
 
 const BuyandSell = () => {
   return (
     <>
       <BackgroundLanding />
       <SearchBar />
-			<Cards />
+      <div className="md:flex md:justify-around">
+        <Sidebar />
+        <Cards />
+      </div>
       <LoadMore />
     </>
   );

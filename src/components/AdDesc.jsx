@@ -35,7 +35,7 @@ const AdDesc = () => {
           </div>
         </div>
         <div className="sm:w-full text-center sm:text-right mt-10 px-4 md:flex md:justify-around">
-          <div className="md:w-8/12 pr-20">
+          <div className="md:w-8/12 md:pr-20">
             <h2 className="font-semibold text-xl my-1">
               آپارتمان 500 متری در الهیه
             </h2>

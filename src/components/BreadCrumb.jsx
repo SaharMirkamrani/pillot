@@ -21,7 +21,7 @@ const BreadCrumb = () => {
           </li>
           <li className="mx-2">
             <Link
-              to="/buyandsell"
+              to="/category/buyandsell"
               className="font-bold hover:text-gray-500 transition duration-300"
             >
               خرید و فروش

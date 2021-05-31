@@ -22,9 +22,11 @@ const App = () => {
         <Route path={`/AdPage/:id`}>
           <AdPage />
         </Route>
-          <Route exact path="/buyandsell" component={BuyandSell} />
+          <Route exact path={`/category/:name`}>
+            <BuyandSell />
+          </Route>
           <Route exact path="/" component={Landing} />
-          <Route component={NotFound} />
+          <Route component={NotFound} path="/404" />
         </Switch>
         <ScrollToTopBtn />
         <Footer />
