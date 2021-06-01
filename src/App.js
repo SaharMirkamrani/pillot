@@ -8,10 +8,11 @@ import AdPage from './pages/AdPage';
 import NotFound from './pages/NotFound';
 import Loader from './components/Loader';
 import ScrollToTopBtn from './components/ScrollToTopBtn';
+import Dashboard from './pages/Dashboard';
 
 const App = () => {
-  const [token, setToken] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
+  const [token, setToken] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="bg-gray-100">
@@ -19,13 +20,14 @@ const App = () => {
         <Header token={token} setToken={setToken} />
         {/* {isLoading && <Loader /> } */}
         <Switch>
-        <Route path={`/AdPage/:id`}>
-          <AdPage />
-        </Route>
+          <Route path={`/AdPage/:id`}>
+            <AdPage />
+          </Route>
           <Route exact path={`/category/:name`}>
             <BuyandSell />
           </Route>
           <Route exact path="/" component={Landing} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route component={NotFound} path="/404" />
         </Switch>
         <ScrollToTopBtn />
