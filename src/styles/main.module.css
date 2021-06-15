@@ -8,18 +8,27 @@
 
 .scrollTopTopBtn {
   font-size: 24px;
-    color: #fff;
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
-    width: 40px;
-    height: 40px;
-    line-height: 35px;
-    border-radius: 5px;
-    background-color: #463ce5;
-    transition: all .3s ease-out 0s;
-    display: block;
+  color: #fff;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  line-height: 35px;
+  border-radius: 5px;
+  background-color: #463ce5;
+  transition: all 0.3s ease-out 0s;
+  display: block;
+}
 
+.mapContainer {
+  height: 100vh;
+  position: relative;
+  outline: none;
+  width: 300px;
+  height: 200px;
+  margin: auto;
+  z-index: 0;
 }
 
 .scrollTopTopBtn:focus {
@@ -31,9 +40,14 @@
   background-color: #685ef5;
 }
 
-
 @media only screen and (max-width: 600px) {
   .header {
     direction: rtl;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .mapContainer {
+    width: 400px;
   }
 }

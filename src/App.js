@@ -9,6 +9,7 @@ import NotFound from './pages/NotFound';
 import Loader from './components/Loader';
 import ScrollToTopBtn from './components/ScrollToTopBtn';
 import Dashboard from './pages/Dashboard';
+import SubmitAd from './pages/SubmitAd'
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -27,6 +28,7 @@ const App = () => {
             <BuyandSell />
           </Route>
           <Route exact path="/" component={Landing} />
+          <Route exact path="/submitAd" component={SubmitAd} />
           <Route path="/dashboard" component={Dashboard} />
           <Route component={NotFound} path="/404" />
         </Switch>
