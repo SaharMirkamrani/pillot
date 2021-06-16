@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <nav className="flex sm:flex-row flex-col items-center sm:justify-around bg-darkYellow p-6">
+      <nav className="flex sm:flex-row flex-col items-center sm:justify-around bg-darkYellow p-6 z-20">
         <div className="md:pr-20 pr-10 text-center m-auto">
           <p className="text-md text-white">تمام حقوق محفوظ است.</p>
         </div>

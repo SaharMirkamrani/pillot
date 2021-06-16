@@ -9,7 +9,8 @@ import NotFound from './pages/NotFound';
 import Loader from './components/Loader';
 import ScrollToTopBtn from './components/ScrollToTopBtn';
 import Dashboard from './pages/Dashboard';
-import SubmitAd from './pages/SubmitAd'
+import SubmitAd from './pages/SubmitAd';
+import ChooseCategory from './pages/ChooseCategory';
 
 const App = () => {
   const [token, setToken] = useState('');
@@ -30,6 +31,7 @@ const App = () => {
           <Route exact path="/" component={Landing} />
           <Route exact path="/submitAd" component={SubmitAd} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route exact path="/chooseCategory" component={ChooseCategory} />
           <Route component={NotFound} path="/404" />
         </Switch>
         <ScrollToTopBtn />
