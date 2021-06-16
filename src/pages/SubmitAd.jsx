@@ -230,10 +230,10 @@ const SubmitAd = () => {
         </div>
 
         <div className="mt-5 flex justify-end w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
-          <button class="bg-white mx-2 text-gray-500 border-2 border-gray-300 hover:border-yellow hover:text-gray-700 font-bold py-2 px-4 rounded-md transition duration-300">
+          <button className="bg-white mx-2 text-gray-500 border-2 border-gray-300 hover:border-yellow hover:text-gray-700 font-bold py-2 px-4 rounded-md transition duration-300">
             انصراف
           </button>
-          <button class="bg-yellow mx-2 focus:outline-none hover:bg-darkYellow text-white font-bold py-2 px-4 rounded-md transition duration-300">
+          <button className="bg-yellow mx-2 focus:outline-none hover:bg-darkYellow text-white font-bold py-2 px-4 rounded-md transition duration-300">
             ارسال آگهی
           </button>
         </div>
