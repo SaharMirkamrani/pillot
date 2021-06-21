@@ -1,17 +1,16 @@
 import BackgroundLanding from '../components/BackgroundLanding';
-import DashboardCard from '../components/DashboardCard';
 import DashboardSideBar from '../components/DashBoardSidebar';
+import Tabs from '../components/TabGroup';
+import DashContainer from '../components/DashContainer';
 
 const Dashboard = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <BackgroundLanding />
-			<div className="md:flex md:justify-center my-20">
-				<DashboardSideBar/>
-        <DashboardCard />
-			</div>
-			
-    </>
+      <div className="my-20">
+        <Tabs />
+      </div>
+    </div>
   );
 };
 

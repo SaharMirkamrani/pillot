@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import BuyandSell from './pages/BuyandSell';
+import List from './pages/List';
 import AdPage from './pages/AdPage';
 import NotFound from './pages/NotFound';
 import Loader from './components/Loader';
@@ -22,17 +22,13 @@ const App = () => {
         <Header token={token} setToken={setToken} />
         {/* {isLoading && <Loader /> } */}
         <Switch>
-          <Route path={`/AdPage/:id`}>
-            <AdPage />
-          </Route>
-          <Route exact path={`/category/:name`}>
-            <BuyandSell />
-          </Route>
           <Route exact path="/" component={Landing} />
+          <Route path={`/AdPage/:id`} component={AdPage} />
+          <Route exact path={`/category/:name`} component={List} />
           <Route exact path="/submitAd" component={SubmitAd} />
           <Route path="/dashboard" component={Dashboard} />
           <Route exact path="/chooseCategory" component={ChooseCategory} />
-          <Route component={NotFound} path="/404" />
+          <Route component={NotFound} path={'*'} />
         </Switch>
         <ScrollToTopBtn />
         <Footer />

@@ -55,11 +55,11 @@ const Login = ({ token }) => {
 
     axios
       .post(
-        'http://site.pillot.ir/admin/Customers/API/_startloginregister?token=Authentication',
+        'http://site.pillot.ir/admin/Customers/API/_startloginregister',
         loginValues,
         {
           headers: {
-            token: 'Authentication',
+            token: 'test',
             'Access-Control-Allow-Origin': '*',
           },
         }

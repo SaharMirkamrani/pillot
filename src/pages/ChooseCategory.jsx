@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ChooseCategory = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <BackgroundLanding />
       <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
         <h2 className="md:text-xl text-lg text-center mx-5 my-10">
@@ -25,7 +25,7 @@ const ChooseCategory = () => {
         <CategoryCard />
         <CategoryCard />
       </div>
-    </>
+    </div>
   );
 };
 

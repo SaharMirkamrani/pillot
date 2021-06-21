@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NotFound = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <div className="m-auto text-center mt-56">
         <div className="h-1/2"></div>
         <div className="mb-60">
@@ -24,7 +24,7 @@ const NotFound = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

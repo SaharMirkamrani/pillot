@@ -4,11 +4,11 @@ import AdDesc from '../components/AdDesc';
 
 const AdPage = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <BackgroundLanding />
-			<BreadCrumb />
-			<AdDesc />
-    </>
+      <BreadCrumb />
+      <AdDesc />
+    </div>
   );
 };
 
