@@ -1,24 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TiTimes } from 'react-icons/ti';
 import { FiLogIn } from 'react-icons/fi';
 import ValidationError from './ValidationError';
 import axios from 'axios';
 
-const Login = ({ token }) => {
+const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [mobileError, setMobileError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [loginValues, setLoginValues] = useState({ phone: '' });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     const { name, value } = e.target;
-    setLoginValues((prev) => {
+    setLoginValues(prev => {
       return { ...prev, [name]: value };
     });
   };
 
-  const validateMobilephone = (input) => {
+  const validateMobilephone = input => {
     let mobile = /^09{1}[\d]{9}$/;
     if (mobile.test(input)) {
       setMobileError(false);
@@ -29,7 +29,7 @@ const Login = ({ token }) => {
     }
   };
 
-  const validatePassword = (pass) => {
+  const validatePassword = pass => {
     if (pass.length !== 4) {
       setPasswordError(true);
       return false;
@@ -43,44 +43,50 @@ const Login = ({ token }) => {
     const timerId = setTimeout(() => 'hey', 1000);
   };
 
-  console.log(handleTimer());
+  // console.log(handleTimer());
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = e => {
     e.preventDefault();
     validateMobilephone(loginValues.phone);
     // validatePassword(loginValues.password);
     if (validateMobilephone(loginValues.phone) === false) return;
     // if (validatePassword(loginValues.password) === false) return;
-    setLoginValues({ phone: '' });
+    // setLoginValues({ phone: '' });
 
-    axios
-      .post(
-        'http://site.pillot.ir/admin/Customers/API/_startloginregister',
-        loginValues,
-        {
-          headers: {
-            token: 'test',
-            'Access-Control-Allow-Origin': '*',
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    setLoginValues({ phone: '' });
+    // axios
+    //   .post('http://site.pillot.ir/admin/Customers/API/_startloginregister', loginValues, {
+    //     headers: {
+    //       token: 'test'
+    //       // 'Access-Control-Allow-Origin': '*',
+    //       // 'Access-Control-Allow-Headers': '*'
+    //     }
+    //   })
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.error(error);
+    //   });
+    // setLoginValues({ phone: '' });
 
+    const requestOptions = {
+      method: 'POST',
+      headers: { 
+        'token': 'test',
+    },
+      body:{ title: loginValues }
+    };
+    fetch('http://site.pillot.ir/admin/Customers/API/_startloginregister', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
     setShowModal(false);
   };
-
-  console.log(loginValues);
 
   return (
     <>
       <button
-        className="bg-lightYellow text-white hover:bg-yellow font-semibold text-md px-8 py-2.5 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
+        className="bg-lightYellow text-white hover:bg-yellow font-semibold text-md px-8 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -95,9 +101,7 @@ const Login = ({ token }) => {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="w-full max-w-md m-auto bg-white rounded-lg shadow-default p-6">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-lg font-semibold text-primary mb-10 mt-2 text-center">
-                      ورود به سایت
-                    </h4>
+                    <h4 className="text-lg font-semibold text-primary mb-10 mt-2 text-center">ورود به سایت</h4>
                     <button
                       className="p-1 mb-10 mt-2 mr-auto bg-transparent border-0 text-black float-left text-3xl leading-none font-semibold outline-none focus:outline-none"
                       onClick={() => setShowModal(false)}
@@ -123,11 +127,7 @@ const Login = ({ token }) => {
                         //   validateMobilephone(loginValues.phone)
                         // }
                       />
-                      {mobileError && (
-                        <ValidationError
-                          text={'لطفا شماره موبایل صحیح را وارد کنید.'}
-                        />
-                      )}
+                      {mobileError && <ValidationError text={'لطفا شماره موبایل صحیح را وارد کنید.'} />}
                     </div>
                     {/* <div className="flex justify-around items-center mt-1">
                       {!token && (

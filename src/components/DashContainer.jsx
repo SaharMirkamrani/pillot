@@ -1,7 +1,11 @@
-const DashContainer = () => {
-  return <div className="container mx-auto px-4 bg-white w-64 h-64">
+import DashItem from './DashItem';
 
-	</div>;
+const DashContainer = () => {
+  return (
+    <div className="container mx-auto lg:w-screen h-max rounded-md my-10">
+      <DashItem />
+    </div>
+  );
 };
 
 export default DashContainer;
