@@ -53,40 +53,33 @@ const Login = () => {
     // if (validatePassword(loginValues.password) === false) return;
     // setLoginValues({ phone: '' });
 
-    // axios
-    //   .post('http://site.pillot.ir/admin/Customers/API/_startloginregister', loginValues, {
-    //     headers: {
-    //       token: 'test'
-    //       // 'Access-Control-Allow-Origin': '*',
-    //       // 'Access-Control-Allow-Headers': '*'
-    //     }
-    //   })
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-    // setLoginValues({ phone: '' });
-
-    const requestOptions = {
-      method: 'POST',
-      headers: { 
-        'token': 'test',
-    },
-      body:{ title: loginValues }
-    };
-    fetch('http://site.pillot.ir/admin/Customers/API/_startloginregister', requestOptions)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
-    setShowModal(false);
+    axios
+      .post(
+        'http://site.pillot.ir/admin/Customers/API/_startloginregister',
+        {
+          mobile: '09396329984'
+        },
+        {
+          headers: {
+            token: 'test',
+            'Access-Control-Allow-Origin': '*'
+            // 'Access-Control-Allow-Headers': '*'
+          }
+        }
+      )
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    setLoginValues({ phone: '' });
   };
 
   return (
     <>
       <button
-        className="bg-lightYellow text-white hover:bg-yellow font-semibold text-md px-8 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
+        className="bg-lightYellow text-white hover:bg-yellow font-semibold text-md px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-200"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -120,7 +113,7 @@ const Login = () => {
                         value={loginValues.phone}
                         name="phone"
                         required
-                        type="number"
+                        type="text"
                         className={`w-full mt-1  p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
                         id="number"
                         // onBlurCapture={() =>

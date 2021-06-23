@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen">
       <BackgroundLanding />
-      <div className="my-20">
+      <div className="my-20 h-max">
         <Tabs />
       </div>
     </div>

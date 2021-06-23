@@ -13,13 +13,12 @@ import SubmitAd from './pages/SubmitAd';
 import ChooseCategory from './pages/ChooseCategory';
 
 const App = () => {
-  const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="bg-gray-100">
       <Router>
-        <Header token={token} setToken={setToken} />
+        <Header />
         {/* {isLoading && <Loader /> } */}
         <Switch>
           <Route exact path="/" component={Landing} />

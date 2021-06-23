@@ -16,7 +16,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Header = ({ token }) => {
+const Header = () => {
   return (
     <Disclosure as="nav" className="bg-white shadow-md sticky top-0 z-50">
       {({ open }) => (
@@ -33,7 +33,7 @@ const Header = ({ token }) => {
                 <div className="flex-shrink-1 flex items-center">
                   <Link to="/">
                     <img
-                      className="lg:block h-16 w-auto pr-5"
+                      className="lg:block h-12 w-auto pr-5 md:h-16"
                       src={Logo}
                       alt="logo"
                     />

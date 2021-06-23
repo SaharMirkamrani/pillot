@@ -58,15 +58,15 @@ const Tabs = () => {
         </TabGroup.TabList>
         <TabGroup.TabPanel
           index={0}
-          className="p-2 transition-all transform h-64"
+          className="p-2 transition-all transform h-max relative"
           activeClassName="opacity-100 duration-500 translate-x-0"
-          inactiveClassName="absolute opacity-0 -translate-x-2"
+          inactiveClassName="opacity-0 -translate-x-2"
         >
           <DashContainer />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={1}
-          className="p-16 transition-all transform h-64 flex flex-col"
+          className="p-2 transition-all transform h-64 h-screen"
           activeClassName="opacity-100 duration-500 translate-x-0"
           inactiveClassName="absolute opacity-0 -translate-x-2"
         >
@@ -77,7 +77,7 @@ const Tabs = () => {
         </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={2}
-          className="p-16 transition-all transform h-64"
+          className="p-2 transition-all transform h-64 h-screen"
           activeClassName="opacity-100 duration-500 translate-x-0"
           inactiveClassName="absolute opacity-0 -translate-x-2"
         >
@@ -85,7 +85,7 @@ const Tabs = () => {
         </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={3}
-          className="p-16 transition-all transform h-64 flex flex-col"
+          className="p-2 transition-all transform h-64 h-screen"
           activeClassName="opacity-100 duration-500 translate-x-0"
           inactiveClassName="absolute opacity-0 -translate-x-2"
         >
@@ -96,7 +96,7 @@ const Tabs = () => {
         </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={4}
-          className="p-16 transition-all transform h-64 flex flex-col"
+          className="p-2 transition-all transform h-64 h-screen"
           activeClassName="opacity-100 duration-500 translate-x-0"
           inactiveClassName="absolute opacity-0 -translate-x-2"
         >
@@ -107,7 +107,7 @@ const Tabs = () => {
         </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={5}
-          className="p-16 transition-all transform h-64 flex flex-col"
+          className="p-2 transition-all transform h-64 h-screen"
           activeClassName="opacity-100 duration-500 translate-x-0"
           inactiveClassName="absolute opacity-0 -translate-x-2"
         >
