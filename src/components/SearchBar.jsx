@@ -15,10 +15,10 @@ const SearchBar = () => {
             onChange={handleInputChange}
             type="text"
             className="w-full pl-3 pr-10 mx-2 py-2 border-2 border-gray-200 rounded-xl hover:border-gray-300 focus:ring-2 focus:ring-blue-200 transition-colors"
-            placeholder="جستجوی آگهی..."
+            placeholder="جستجو در پیلوت"
           />
           <div>
-            <button class="focus:outline-none bg-lightYellow hover:bg-yellow text-white font-semibold mx-2 py-2 px-4 rounded-lg shadow-md inline-flex items-center hover:shadow transition duration-300">
+            <button className="focus:outline-none bg-lightYellow hover:bg-yellow text-white font-semibold mx-2 py-2 px-4 rounded-lg shadow-md inline-flex items-center hover:shadow transition duration-300">
               <span className="px-1">بگرد</span>
               <FiSearch />
             </button>

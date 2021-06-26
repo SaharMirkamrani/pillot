@@ -1,5 +1,4 @@
 import BackgroundLanding from '../components/BackgroundLanding';
-import DashboardSideBar from '../components/DashBoardSidebar';
 import Tabs from '../components/TabGroup';
 import DashContainer from '../components/DashContainer';
 
