@@ -6,7 +6,7 @@ import DashCardBookmark from './DashCardBookmark';
 const Tabs = () => {
   return (
     <div className="flex flex-col justify-center items-center">
-      <TabGroup numTabs={6} direction={TabGroup.direction.HORIZONTAL}>
+      <TabGroup numTabs={6} direction={TabGroup.direction.VERTICAL}>
         <TabGroup.TabList className="mx-auto text-center">
           <TabGroup.Tab
             index={0}
@@ -57,60 +57,33 @@ const Tabs = () => {
             تنظیمات ربات
           </TabGroup.Tab>
         </TabGroup.TabList>
-        <TabGroup.TabPanel
-          index={0}
-          className="p-2 transition-all transform h-max relative"
-          activeClassName="block duration-500 translate-x-0"
-          inactiveClassName="hidden -translate-x-2"
-        >
+        <TabGroup.TabPanel index={0} className="py-2 h-max w-full" activeClassName="block" inactiveClassName="hidden">
           <DashContainer />
         </TabGroup.TabPanel>
-        <TabGroup.TabPanel
-          index={1}
-          className="p-2 transition-all transform h-max relative"
-          activeClassName="block duration-500 translate-x-0"
-          inactiveClassName="hidden -translate-x-2"
-        >
+        <TabGroup.TabPanel index={1} className="py-2 h-max" activeClassName="block" inactiveClassName="hidden">
           <DashCardBookmark bookmarked={true} />
         </TabGroup.TabPanel>
-        <TabGroup.TabPanel
-          index={2}
-          className="p-2 transition-all transform h-max relative"
-          activeClassName="block duration-500 translate-x-0"
-          inactiveClassName="hidden -translate-x-2"
-        >
+        <TabGroup.TabPanel index={2} className="py-2 h-max" activeClassName="block" inactiveClassName="hidden">
           <DashCardBookmark bookmarked={false} />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={3}
-          className="p-2 transition-all transform h-64 h-screen"
-          activeClassName="opacity-100 duration-500 translate-x-0"
-          inactiveClassName="absolute opacity-0 -translate-x-2"
-        >
-
-        </TabGroup.TabPanel>
+          className="py-2 h-max"
+          activeClassName="block"
+          inactiveClassName="hidden"
+        ></TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={4}
-          className="p-2 transition-all transform h-64 h-screen"
-          activeClassName="opacity-100 duration-500 translate-x-0"
-          inactiveClassName="absolute opacity-0 -translate-x-2"
-        >
-          <label className="font-semibold mb-1" htmlFor="input">
-            Input
-          </label>
-          <input id="input" type="text" className="border border-gray-400 px-8 h-12" placeholder="Focus me!" />
-        </TabGroup.TabPanel>
+          className="py-2 h-max"
+          activeClassName="block"
+          inactiveClassName="hidden"
+        ></TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={5}
-          className="p-2 transition-all transform h-64 h-screen"
-          activeClassName="opacity-100 duration-500 translate-x-0"
-          inactiveClassName="absolute opacity-0 -translate-x-2"
-        >
-          <label className="font-semibold mb-1" htmlFor="input">
-            Input
-          </label>
-          <input id="input" type="text" className="border border-gray-400 px-8 h-12" placeholder="Focus me!" />
-        </TabGroup.TabPanel>
+          className="py-2 h-max"
+          activeClassName="block"
+          inactiveClassName="hidden"
+        ></TabGroup.TabPanel>
       </TabGroup>
     </div>
   );
