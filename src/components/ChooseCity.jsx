@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TiTimes } from 'react-icons/ti';
-import ValidationError from './ValidationError';
-import axios from 'axios';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
-	const [isActive, setIsActive] = useState(true)
+  const [active, setActive] = useState('');
+  const [cities, setCities] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+
+  useEffect(() => {
+    const headers = { token: 'test' };
+    fetch('http://site.pillot.ir/admin/States/API/_apistate', { headers })
+      .then(response => response.json())
+      .then(data => setCities(data.data));
+  }, []);
+
   return (
     <>
       <button
@@ -43,72 +51,54 @@ const Login = () => {
                         type="text"
                         className={`w-full mt-1 p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
                         id="searchCity"
+                        onChange={e => setSearchValue(e.target.value)}
+                        value={searchValue}
                       />
                     </div>
                   </form>
 
                   <div className="flex justify-evenly flex-wrap">
-                    <button
-                      type="button"
-                      className={`${isActive ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`:`bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`} `}
-                    >
-                      تهران
-                    </button>
-                    <button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-                    <button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-                    <button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										<button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										<button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										<button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										<button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										<button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										<button
-                      type="button"
-                      className="bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded"
-                    >
-                      کرج
-                    </button>
-										
+                    {searchValue
+                      ? cities
+                          .filter(city => city.state_name.includes(searchValue))
+                          .map((city, index) => {
+                            return (
+                              <button
+                                key={index}
+                                type="button"
+                                onClick={() => {
+                                  setActive(city.state_name);
+                                  setShowModal(false);
+                                }}
+                                className={`${
+                                  active === city.state_name
+                                    ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
+                                    : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
+                                }`}
+                              >
+                                {city.state_name}
+                              </button>
+                            );
+                          })
+                      : cities.map((city, index) => {
+                          return (
+                            <button
+                              key={index}
+                              type="button"
+                              onClick={() => {
+                                setActive(city.state_name);
+                                setShowModal(false);
+                              }}
+                              className={`${
+                                active === city.state_name
+                                  ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
+                                  : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
+                              }`}
+                            >
+                              {city.state_name}
+                            </button>
+                          );
+                        })}
                   </div>
                 </div>
               </div>
