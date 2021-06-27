@@ -2,6 +2,7 @@ import React from 'react';
 import { TabGroup } from '@statikly/funk';
 import DashContainer from './DashContainer';
 import DashCardBookmark from './DashCardBookmark';
+import DashAddressCards from './DashAddressCard';
 
 const Tabs = () => {
   return (
@@ -61,17 +62,14 @@ const Tabs = () => {
           <DashContainer />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel index={1} className="py-2 h-max" activeClassName="block" inactiveClassName="hidden">
-          <DashCardBookmark bookmarked={true} />
+          <DashCardBookmark />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel index={2} className="py-2 h-max" activeClassName="block" inactiveClassName="hidden">
-          <DashCardBookmark bookmarked={false} />
+          <DashCardBookmark />
         </TabGroup.TabPanel>
-        <TabGroup.TabPanel
-          index={3}
-          className="py-2 h-max"
-          activeClassName="block"
-          inactiveClassName="hidden"
-        ></TabGroup.TabPanel>
+        <TabGroup.TabPanel index={3} className="py-2 h-max w-full" activeClassName="block" inactiveClassName="hidden">
+          <DashAddressCards />
+        </TabGroup.TabPanel>
         <TabGroup.TabPanel
           index={4}
           className="py-2 h-max"

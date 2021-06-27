@@ -4,7 +4,7 @@ import LoadMore from '../components/LoadMore';
 import SearchBar from '../components/SearchBar';
 import Sidebar from '../components/Sidebar';
 
-const BuyandSell = () => {
+const List = () => {
   return (
     <div className="min-h-screen">
       <BackgroundLanding />
@@ -18,4 +18,4 @@ const BuyandSell = () => {
   );
 };
 
-export default BuyandSell;
+export default List;

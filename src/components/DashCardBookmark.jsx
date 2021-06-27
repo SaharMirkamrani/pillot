@@ -1,8 +1,10 @@
 import pic from '../assets/sample.jpg';
 import { BsFillBookmarkFill } from 'react-icons/bs';
 import { BsBookmark } from 'react-icons/bs';
+import { useState } from 'react';
 
-const DashCardBookmark = ({ bookmarked }) => {
+const DashCardBookmark = () => {
+  const [bookmarked, setBookmarked] = useState(true)
   return (
     <>
       <DashCard bookmarked={bookmarked} />
