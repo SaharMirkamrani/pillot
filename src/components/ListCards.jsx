@@ -1,18 +1,17 @@
 import ProductBanner from './AdBanner';
+import { DashCard } from './DashCardBookmark';
 
-const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const arr = [1, 2, 3, 4, 5, 6, 7];
 
 const Cards = () => {
   return (
-    <>
-      <div className="flex flex-wrap lg:mx-28 md:mx-2 mx-8 px-4 sm:mx-0">
-        {arr.map((item) => (
-          <div key={item} className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-          <ProductBanner />
-          </div>
-        ))}
-      </div>
-    </>
+    <div className="flex flex-wrap mx-auto lg:w-10/12 md:w-5/12 ">
+      {arr.map(item => (
+        // <div key={item} className="my-1 px-1 lg:my-4 lg:px-4">
+        <DashCard />
+        // </div>
+      ))}
+    </div>
   );
 };
 

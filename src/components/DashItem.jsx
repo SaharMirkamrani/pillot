@@ -4,7 +4,7 @@ import { BiCalendar } from 'react-icons/bi';
 const DashItem = () => {
   return (
     <>
-      <div className="mx-auto px-4 bg-white w-full sm:w-10/12 md:w-1/2 lg:w-1/2 h-max rounded-md py-4 md:py-3 shadow-md my-2">
+      <div className="mx-auto px-4 bg-white w-10/12 md:w-1/2 lg:w-1/2 h-max rounded-md py-4 md:py-3 shadow-md my-2">
         <div className="flex flex-col md:flex-row justify-between text-center pb-2 mx-auto md:mx-0">
           <p className="text-lg">
             پرداخت <span className="text-green-700">موفق</span> از درگاه پارسیان

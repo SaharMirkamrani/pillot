@@ -26,9 +26,9 @@ const Sidebar = () => {
   };
   return (
     <>
-      <div className="md:flex flex-col md:max-h-screen w-full">
-        <div className="flex md:flex-col md:justify-center md:w-80 text-gray-700 bg-white flex-shrink-0 rounded-xl pb-10 mx-10 lg:mx-0 lg:mr-32">
-          <nav className="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto px-10 py-10">
+      <div className="md:flex flex-col md:h-full md:w-4/12">
+        <div className="flex md:flex-col md:justify-center md:w-80 text-gray-700 bg-white flex-auto rounded-xl pb-10 mx-10 lg:mx-0 lg:mr-10">
+          <nav className="flex-grow md:block pb-4 md:pb-0 md:overflow-y-auto px-4 py-10">
             <CardHeader text={'فروش مسکن'} />
             <CardItem items={listValues.sellHouse} />
             <CardHeader text={'اجاره مسکن'} />

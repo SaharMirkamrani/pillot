@@ -4,16 +4,17 @@ import { BsBookmark } from 'react-icons/bs';
 import { useState } from 'react';
 
 const DashCardBookmark = () => {
-  const [bookmarked, setBookmarked] = useState(true)
+  const [bookmarked, setBookmarked] = useState(true);
   return (
-    <>
+    <div className="flex flex-wrap w-3/4 mx-auto">
+      <DashCard bookmarked={bookmarked} />
+      <DashCard bookmarked={false} />
       <DashCard bookmarked={bookmarked} />
       <DashCard bookmarked={bookmarked} />
+      <DashCard bookmarked={false} />
       <DashCard bookmarked={bookmarked} />
       <DashCard bookmarked={bookmarked} />
-      <DashCard bookmarked={bookmarked} />
-      <DashCard bookmarked={bookmarked} />
-    </>
+    </div>
   );
 };
 
@@ -22,25 +23,30 @@ export default DashCardBookmark;
 const DashCard = ({ bookmarked }) => {
   return (
     <>
-      <div className="relative sm:mb-6 mb-4 mx-4 mt-6 bg-white p-2 w-80 max-w-3xl sm:w-full sm:p-6 h-auto sm:h-64 rounded-2xl shadow-lg flex flex-col sm:flex-row gap-5">
+      <div className="relative flex-auto mb-6 mb-4 mx-4 mt-6 bg-white p-4 pl-6 h-52 rounded-xl shadow-lg flex gap-5">
         <div
           style={{
             backgroundImage: `url(${pic})`
           }}
-          className="h-52 sm:h-full sm:w-52 rounded-xl bg-center bg-cover"
+          className="h-full w-52 rounded-xl bg-center bg-cover"
         ></div>
-        <div className="flex sm:flex-1 flex-col gap-2 p-1 sm:mt-6">
-          <h1 className="text-lg sm:text-xl font-semibold text-gray-600 mb-6">آپارتمان 100 متری دهقان ویلا</h1>
-          <p className="text-gray-500 text-sm sm:text-base line-clamp-3">ودیعه 350,000,000 تومان</p>
-          <p className="text-gray-500 text-sm sm:text-base line-clamp-3">اجاره ماهیانه 2,500,000 تومان</p>
-          <p className="text-gray-500 text-sm sm:text-base line-clamp-3">لحظاتی پیش در کوی مهر</p>
+        <div className="flex flex-col justify-between gap-2 lg:pt-4 pl-0 lg:pb-4">
+          <h1 className="text-lg font-semibold text-gray-600 mb-4">آپارتمان 100 متری دهقان ویلا</h1>
+          <div className="text-gray-500 text-sm pb-2">
+            <p >ودیعه 350,000,000 تومان</p>
+            <p >اجاره ماهیانه 2,500,000 تومان</p>
+            <p className="text-gray-400 text-xs py-2">لحظاتی پیش در کوی مهر</p>
+          </div>
+
           {bookmarked ? (
-            <BsFillBookmarkFill className="absolute left-4 bottom-4 text-darkYellow text-3xl" />
+            <BsFillBookmarkFill className="absolute left-3 bottom-3 text-darkYellow text-2xl" />
           ) : (
-            <BsBookmark className="absolute left-4 bottom-4 text-darkYellow text-3xl" />
+            <BsBookmark className="absolute left-3 bottom-3 text-darkYellow text-2xl" />
           )}
         </div>
       </div>
     </>
   );
 };
+
+export { DashCard };
