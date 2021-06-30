@@ -57,7 +57,7 @@ const Login = () => {
       .post(
         'http://site.pillot.ir/admin/Customers/API/_startloginregister',
         {
-          mobile: '09396329984'
+          mobile: loginValues.phone
         },
         {
           headers: {

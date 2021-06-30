@@ -9,7 +9,7 @@ const List = () => {
     <div className="min-h-screen">
       <BackgroundLanding />
       <SearchBar />
-      <div className="md:flex md:gap-5 w-full">
+      <div className="md:flex w-full">
         <Sidebar />
         <Cards />
       </div>
