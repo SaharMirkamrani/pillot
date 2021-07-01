@@ -1,18 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { TiTimes } from 'react-icons/ti';
+import axios from 'axios';
 
-const Login = () => {
+const ChooseCity = () => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState('');
-  const [cities, setCities] = useState([]);
+  const [states, setStates] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
-  useEffect(() => {
+  const getStates = async () => {
     const headers = { token: 'test' };
-    fetch('http://site.pillot.ir/admin/States/API/_apistate', { headers })
-      .then(response => response.json())
-      .then(data => setCities(data.data));
+    const response = await fetch('http://site.pillot.ir/admin/States/API/_apistate', { headers });
+    const data = await response.json();
+    setStates(data.data);
+  };
+
+  useEffect(() => {
+    getStates();
   }, []);
 
   return (
@@ -57,46 +62,67 @@ const Login = () => {
                     </div>
                   </form>
 
+                  <h3>استان ها</h3>
                   <div className="flex justify-evenly flex-wrap">
                     {searchValue
-                      ? cities
-                          .filter(city => city.state_name.includes(searchValue))
-                          .map((city, index) => {
+                      ? states
+                          .filter(state => state.state_name.includes(searchValue))
+                          .map((state, index) => {
                             return (
+                              <div>
+                                <button
+                                  key={index}
+                                  type="button"
+                                  onClick={() => {
+                                    setActive(state.state_name);
+                                    setShowModal(false);
+                                  }}
+                                  className={`${
+                                    active === state.state_name
+                                      ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
+                                      : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
+                                  }`}
+                                >
+                                  {state.state_name}
+                                </button>
+                                <CitiesButtons
+                                  id={state.state_id}
+                                  setShowModal={setShowModal}
+                                  active={active}
+                                  setActive={setActive}
+                                  states={states}
+                                  setStates={setStates}
+                                  searchValue={searchValue}
+                                />
+                              </div>
+                            );
+                          })
+                      : states.map((state, index) => {
+                          return (
+                            <div>
                               <button
                                 key={index}
                                 type="button"
                                 onClick={() => {
-                                  setActive(city.state_name);
+                                  setActive(state.state_name);
                                   setShowModal(false);
                                 }}
                                 className={`${
-                                  active === city.state_name
+                                  active === state.state_name
                                     ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
                                     : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
                                 }`}
                               >
-                                {city.state_name}
+                                {state.state_name}
                               </button>
-                            );
-                          })
-                      : cities.map((city, index) => {
-                          return (
-                            <button
-                              key={index}
-                              type="button"
-                              onClick={() => {
-                                setActive(city.state_name);
-                                setShowModal(false);
-                              }}
-                              className={`${
-                                active === city.state_name
-                                  ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
-                                  : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
-                              }`}
-                            >
-                              {city.state_name}
-                            </button>
+                              <CitiesButtons
+                                id={state.state_id}
+                                setShowModal={setShowModal}
+                                active={active}
+                                setStates={setStates}
+                                searchValue={searchValue}
+                              />
+                            </div>
                           );
                         })}
                   </div>
@@ -111,4 +137,58 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ChooseCity;
+
+const CitiesButtons = ({ setShowModal, active, setActive, searchValue, id }) => {
+  const [cities, setCities] = useState([]);
+
+  const getCities = useCallback(async () => {
+    axios
+      .post(
+        'http://site.pillot.ir/admin/Cities/API/_apicities',
+        {
+          state_id: id
+        },
+        {
+          headers: {
+            token: 'test'
+          }
+        }
+      )
+      .then(response => {
+        setCities(response.data.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [id]);
+
+  useEffect(() => {
+    getCities();
+  }, [getCities]);
+
+  return (
+    <>
+      {cities &&
+        cities.map((city, index) => {
+          return (
+            <button
+              key={index}
+              type="button"
+              onClick={() => {
+                setActive(city.name);
+                setShowModal(false);
+              }}
+              className={`${
+                active === city.name
+                  ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
+                  : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
+              }`}
+            >
+              {city.name}
+            </button>
+          );
+        })}
+    </>
+  );
+};
