@@ -74,6 +74,7 @@ const Login = () => {
         console.error(error);
       });
     setLoginValues({ phone: '' });
+    
   };
 
   return (
@@ -160,12 +161,12 @@ const Login = () => {
                       </div>
                     </div> */}
 
-                    {/* <div className="flex justify-start flex-row items-center mt-2">
+                    <div className="flex justify-start flex-row items-center mt-2">
                       <p className="text-sm text-gray-600">
                         {' '}
                         ارسال مجدد کد تائید در 
                       </p>
-                    </div> */}
+                    </div>
 
                     <div className="flex justify-end items-center mt-1">
                       <button

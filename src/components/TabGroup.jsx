@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabGroup } from '@statikly/funk';
 import DashContainer from './DashContainer';
-import DashCardBookmark from './DashCardBookmark';
+import ListCards from './ListCards';
 import DashAddressCards from './DashAddressCard';
 
 const Tabs = () => {
@@ -62,10 +62,10 @@ const Tabs = () => {
           <DashContainer />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel index={1} className="py-2 h-max" activeClassName="block" inactiveClassName="hidden">
-          <DashCardBookmark />
+          <ListCards />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel index={2} className="py-2 h-max" activeClassName="block" inactiveClassName="hidden">
-          <DashCardBookmark />
+          <ListCards />
         </TabGroup.TabPanel>
         <TabGroup.TabPanel index={3} className="py-2 h-max w-full" activeClassName="block" inactiveClassName="hidden">
           <DashAddressCards />

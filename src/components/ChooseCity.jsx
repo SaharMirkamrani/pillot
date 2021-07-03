@@ -69,9 +69,8 @@ const ChooseCity = () => {
                           .filter(state => state.state_name.includes(searchValue))
                           .map((state, index) => {
                             return (
-                              <div>
+                              <div key={index}>
                                 <button
-                                  key={index}
                                   type="button"
                                   onClick={() => {
                                     setActive(state.state_name);
@@ -99,9 +98,8 @@ const ChooseCity = () => {
                           })
                       : states.map((state, index) => {
                           return (
-                            <div>
+                            <div key={index}>
                               <button
-                                key={index}
                                 type="button"
                                 onClick={() => {
                                   setActive(state.state_name);

@@ -7,15 +7,7 @@ import { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import Switch from './Switch';
 
-const listValues = {
-  sellHouse: ['فروش زمین', 'فروش آپارتمان', 'فروش ویلا'],
-  rentHouse: ['اجاره آپارتمان', 'اجاره ویلا'],
-  sellCommercial: ['فروش دفترکار اتاق اداری مطب', 'فروش مغازه و غرفه', 'فروش صنعتی و کشاورزی'],
-  rentCommercial: ['اجاره دفتر کار ،اتاق اداری،مطب', 'اجاره مغازه و غرفه', 'اجاره صنعتی کشاورزی'],
-  shortTimeRent: ['اجاره کوتاه مدت آپارتمان و سوییت', 'اجاره کوتاه مدت ویلا و باغ', 'اجاره کوتاه مدت دفتر کار و فضای آموزشی']
-};
-
-const Sidebar = () => {
+const Sidebar = ({category}) => {
   const [categories, setCategories] = useState([]);
 
   const getCat = async () => {
@@ -35,7 +27,7 @@ const Sidebar = () => {
         <div className="flex md:flex-col md:justify-center md:w-80 text-gray-700 bg-white flex-auto rounded-xl pb-10 mx-10 lg:mx-0 lg:mr-10">
           <nav className="flex-grow md:block pb-4 md:pb-0 md:overflow-y-auto px-4 py-10">
             {categories &&
-              categories.map(category => {
+              categories.filter(item => (category.includes(item.name.split(" ")[0]))).map(category => {
                 return <CardItem key={category.id} text={category.name} id={category.id} />;
               })}
             <Switch />
@@ -73,8 +65,6 @@ const CardItem = ({ text, id }) => {
   useEffect(() => {
     getSubCat();
   }, [getSubCat]);
-
-  console.log(subcategories);
 
   return (
     <>
