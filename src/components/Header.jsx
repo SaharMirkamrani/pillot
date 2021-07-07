@@ -72,14 +72,14 @@ const Header = () => {
           {/* mobile menu */}
           <Transition
             show={open}
-            enter="transition-opacity duration-500"
+            enter="transition-opacity duration-200"
             enterFrom="opacity-0"
             enterTo="opacity-100"
-            leave="transition-opacity duration-500"
+            leave="transition-opacity duration-200"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Disclosure.Panel className="lg:hidden transition duration-500">
+            <Disclosure.Panel className="lg:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {navigation.map(item => (
                   <Link

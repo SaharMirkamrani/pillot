@@ -10,7 +10,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <nav className="flex sm:flex-row flex-col items-center sm:justify-around bg-darkYellow p-6 z-30 ">
+      <nav className="flex sm:flex-row flex-col items-center sm:justify-around bg-darkYellow p-6 z-30">
         <div className="md:pr-20 pr-10 text-center m-auto">
           <p className="text-md text-white">تمام حقوق محفوظ است.</p>
         </div>
@@ -20,7 +20,7 @@ const Footer = () => {
               href="#item1"
               className="mt-4 inline-block lg:mt-0 hover:text-white mr-4"
             >
-              <div className="flex items-center flex-no-shrink text-white mr-6 transition duration-500 ease-in-out hover:text-gray-400">
+              <div className="flex items-center flex-no-shrink text-white transition duration-500 ease-in-out hover:text-gray-400">
                 <FontAwesomeIcon icon={faFacebook} />
               </div>
             </a>

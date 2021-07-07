@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { TiTimes } from 'react-icons/ti';
 import { FiLogIn } from 'react-icons/fi';
@@ -10,6 +10,7 @@ const Login = () => {
   const [mobileError, setMobileError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [loginValues, setLoginValues] = useState({ phone: '' });
+  const [seconds, setSeconds] = useState(30);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -39,11 +40,17 @@ const Login = () => {
     }
   };
 
-  const handleTimer = () => {
-    const timerId = setTimeout(() => 'hey', 1000);
-  };
+  const handleCountDown = useCallback(() => {
+    if (seconds > 0) {
+      setTimeout(() => setSeconds(seconds - 1), 1000);
+    } else {
+      setSeconds(0);
+    }
+  }, [seconds]);
 
-  // console.log(handleTimer());
+  useEffect(() => {
+    handleCountDown();
+  }, [seconds]);
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -63,7 +70,6 @@ const Login = () => {
           headers: {
             token: 'test',
             'Access-Control-Allow-Origin': '*'
-            // 'Access-Control-Allow-Headers': '*'
           }
         }
       )
@@ -74,7 +80,8 @@ const Login = () => {
         console.error(error);
       });
     setLoginValues({ phone: '' });
-    
+
+    handleCountDown();
   };
 
   return (
@@ -90,7 +97,7 @@ const Login = () => {
       </button>
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none animate-fade-in-down">
             <div className="relative sm:w-1/2 lg:w-4/12 my-6 mx-auto max-w-2xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="w-full max-w-md m-auto bg-white rounded-lg shadow-default p-6">
@@ -162,10 +169,7 @@ const Login = () => {
                     </div> */}
 
                     <div className="flex justify-start flex-row items-center mt-2">
-                      <p className="text-sm text-gray-600">
-                        {' '}
-                        ارسال مجدد کد تائید در 
-                      </p>
+                      <p className="text-sm text-gray-600"> ارسال مجدد کد تائید در {seconds}</p>
                     </div>
 
                     <div className="flex justify-end items-center mt-1">

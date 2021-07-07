@@ -10,12 +10,14 @@ import Dashboard from './pages/Dashboard';
 import SubmitAd from './pages/SubmitAd';
 import ChooseCategory from './pages/ChooseCategory';
 import ListProvider from './ListProvider';
+import Loader from './components/Loader';
 
 const App = () => {
   return (
     <div className="bg-gray-100">
       <Router>
         <ListProvider>
+          {/* <Loader /> */}
           <Header />
           <Switch>
             <Route exact path="/" component={Landing} />

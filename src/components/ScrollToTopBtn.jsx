@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { AiOutlineArrowUp } from 'react-icons/ai';
-import styles from '../styles/main.module.css';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -8,7 +7,7 @@ export default function ScrollToTop() {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: 'smooth'
     });
   };
 
@@ -28,9 +27,8 @@ export default function ScrollToTop() {
 
   return (
     <div>
-      {/*  <button className="outline-none focus:outline-none m-2 bg-blue-500 hover:bg-blue-700 transition duration-300 text-white font-bold py-2 px-4 rounded-full absolute fixed right-1/4 bottom-1/12 w-20 h-12"> */}
       {isVisible && (
-        <button className={styles.scrollTopTopBtn}>
+        <button className="text-white fixed left-6 bottom-6 w-10 h-10 rounded bg-blue-500 block animate-fade-in-down focus:outline-none focus:border-none hover:bg-blue-600 transition duration-150">
           <div onClick={scrollToTop}>
             <AiOutlineArrowUp className="text-2xl mx-auto" />
           </div>

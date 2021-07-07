@@ -32,7 +32,7 @@ const ChooseCity = () => {
 
       {showModal ? (
         <>
-          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none animate-fade-in-down">
             <div className="relative sm:w-1/2 lg:w-4/12 my-6 mx-auto max-w-2xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="w-full max-w-md m-auto bg-white rounded-lg shadow-default p-6">

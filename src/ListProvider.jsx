@@ -9,6 +9,7 @@ export const AdsContext = createContext({
 
 const AdProvider = ({ children }) => {
   const [ads, setAds] = useState([]);
+  const [Bookmarks, setBookmarks] = useState([]);
 
   const getAds = useCallback(async () => {
     const headers = { token: 'test' };
