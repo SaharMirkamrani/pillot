@@ -3,11 +3,12 @@ import { BiLandscape } from 'react-icons/bi';
 import { HiOutlineOfficeBuilding } from 'react-icons/hi';
 import { BsHouseDoor } from 'react-icons/bs';
 import { BsFillCircleFill } from 'react-icons/bs';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback,useContext } from 'react';
 import axios from 'axios';
 import Switch from './Switch';
+import { AdsContext } from '../ListProvider';
 
-const Sidebar = ({category}) => {
+const Sidebar = ({ category }) => {
   const [categories, setCategories] = useState([]);
 
   const getCat = async () => {
@@ -27,9 +28,11 @@ const Sidebar = ({category}) => {
         <div className="flex md:flex-col md:justify-center md:w-80 text-gray-700 bg-white flex-auto rounded-xl pb-10 mx-10 lg:mx-0 lg:mr-10">
           <nav className="flex-grow md:block pb-4 md:pb-0 md:overflow-y-auto px-4 py-10">
             {categories &&
-              categories.filter(item => (category.includes(item.name.split(" ")[0]))).map(category => {
-                return <CardItem key={category.id} text={category.name} id={category.id} />;
-              })}
+              categories
+                .filter(item => category.includes(item.name.split(' ')[0]))
+                .map(category => {
+                  return <CardItem key={category.id} text={category.name} id={category.id} />;
+                })}
             <Switch />
           </nav>
         </div>
@@ -40,6 +43,7 @@ const Sidebar = ({category}) => {
 
 const CardItem = ({ text, id }) => {
   const [subcategories, setSubcategories] = useState([]);
+  const {setFilteredBy} = useContext(AdsContext);
 
   const getSubCat = useCallback(async () => {
     axios
@@ -68,38 +72,29 @@ const CardItem = ({ text, id }) => {
 
   return (
     <>
-      <div className="flex items-center justify-start">
+      <div onClick={()=>setFilteredBy(text)} className="flex items-center justify-start cursor-pointer">
         <BsFillCircleFill className="text-yellow ml-2" />
         <h3 className="font-semibold my-2">{text} </h3>
       </div>
       <div className="pr-3">
-        <div className="flex items-center py-1 hover:text-yellow transition duration-300">
+        <div onClick={()=>setFilteredBy(subcategories[0].name)} className="flex cursor-pointer items-center py-1 hover:text-yellow transition duration-300">
           <HiOutlineOfficeBuilding />
-          <Link
-            to="/"
-            className="block px-4 mb-1 mt-2 text-sm text-gray-700 focus:text-gray-900 focus:outline-none focus:shadow-outline"
-          >
+          <p className="block px-4 mb-1 mt-2 text-sm text-gray-700 focus:text-gray-900 focus:outline-none focus:shadow-outline">
             {subcategories[0] && subcategories[0].name}
-          </Link>
+          </p>
         </div>
-        <div className="flex items-center py-1 hover:text-yellow transition duration-300">
+        <div onClick={()=>setFilteredBy(subcategories[1].name)} className="flex cursor-pointer items-center py-1 hover:text-yellow transition duration-300">
           <BsHouseDoor />
-          <Link
-            to="/"
-            className="block px-4 mb-1 text-sm text-gray-700 hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline"
-          >
+          <p className="block px-4 mb-1 text-sm text-gray-700 hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline">
             {subcategories[1] && subcategories[1].name}
-          </Link>
+          </p>
         </div>
         {subcategories[2] && (
-          <div className="flex items-center py-1 hover:text-yellow transition duration-300">
+          <div onClick={()=>setFilteredBy(subcategories[2].name)} className="flex cursor-pointer items-center py-1 hover:text-yellow transition duration-300">
             <BiLandscape />
-            <Link
-              to="/"
-              className="block px-4 mb-1 text-sm text-gray-700 hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline"
-            >
+            <p className="block px-4 mb-1 text-sm text-gray-700 hover:text-gray-900 focus:text-gray-900 focus:outline-none focus:shadow-outline">
               {subcategories[2] && subcategories[2].name}
-            </Link>
+            </p>
           </div>
         )}
       </div>

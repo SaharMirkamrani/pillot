@@ -5,7 +5,6 @@ import { AdsContext } from '../ListProvider';
 const ListCards = ({ searchValue, category }) => {
   const [bookmarked, setBookmarked] = useState(true);
   const { ads, getAds } = useContext(AdsContext);
-  console.log(category);
 
   useEffect(() => {
     getAds();

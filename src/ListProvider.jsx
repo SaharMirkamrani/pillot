@@ -9,20 +9,28 @@ export const AdsContext = createContext({
 
 const AdProvider = ({ children }) => {
   const [ads, setAds] = useState([]);
-  const [Bookmarks, setBookmarks] = useState([]);
+  const [filteredBy, setFilteredBy] = useState('');
 
   const getAds = useCallback(async () => {
     const headers = { token: 'test' };
     const response = await fetch(url, { headers });
     const data = await response.json();
-    setAds(data.data);
-  }, []);
+    if (filteredBy) {
+      let temp = data.data;
+      let filtered = temp.filter(item => item.assignment_id.trim() === filteredBy || item.housetype_id === filteredBy);
+      setAds(filtered);
+    } else {
+      setAds(data.data);
+    }
+  }, [filteredBy]);
 
   useEffect(() => {
     setAds('');
   }, [getAds]);
 
-  return <AdsContext.Provider value={{ ads, getAds }}>{children}</AdsContext.Provider>;
+  console.log(filteredBy);
+
+  return <AdsContext.Provider value={{ ads, getAds, setFilteredBy }}>{children}</AdsContext.Provider>;
 };
 
 export default AdProvider;

@@ -2,21 +2,22 @@ import BackgroundLanding from '../components/BackgroundLanding';
 import 'leaflet/dist/leaflet.css';
 import Map from '../components/Map';
 import FileUploader from '../components/FileUploader';
+import { Link } from 'react-router-dom';
 
 const SubmitAd = () => {
   return (
     <>
       <BackgroundLanding />
       <div className="text-center flex flex-col justify-center m-auto my-10">
-        <h2 className="md:text-2xl text-lg text-center mx-5">
-          اطلاعات آگهی را وارد کنید
-        </h2>
-        <button
-          type="button"
-          className="md:mr-40 lg:mr-64 md:mt-0 mx-auto mt-4 md:w-36 w-32 bg-white shadow text-gray-500 text-center focus:outline-none rounded-full sm:px-4 sm:py-2 px-2 py-2 hover:text-gray-700 hover:shadow-lg transition duration-300"
-        >
-          تغییر دسته بندی
-        </button>
+        <h2 className="md:text-2xl text-lg text-center mx-5">اطلاعات آگهی را وارد کنید</h2>
+        <Link to="/chooseCategory">
+          <button
+            type="button"
+            className="mx-auto mt-4 md:w-36 w-32 bg-white shadow text-gray-500 text-center focus:outline-none rounded-full sm:px-4 sm:py-2 px-2 py-2 hover:text-gray-700 hover:shadow-lg transition duration-300"
+          >
+            تغییر دسته بندی
+          </button>
+        </Link>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">انتخاب شهر</label>
@@ -42,47 +43,30 @@ const SubmitAd = () => {
           <label className="text-right my-2 mr-3">عکس آگهی</label>
           <p className="text-right my-2 mr-3 text-gray-600 text-sm">
             {' '}
-            عکس هایی از فضای داخل و بیرون ملک اضافه کنید. آگهی های دارای عکس تا
-            3 برابر بیشتر توسط کاربران دیده میشوند.
+            عکس هایی از فضای داخل و بیرون ملک اضافه کنید. آگهی های دارای عکس تا 3 برابر بیشتر توسط کاربران دیده میشوند.
           </p>
 
           <FileUploader />
 
-          <p className="text-right my-2 mr-3 text-gray-600 text-sm">
-            {' '}
-            تعداد عکس های انتخاب شده نباید بیشتر از 20 عدد باشد.
-          </p>
+          <p className="text-right my-2 mr-3 text-gray-600 text-sm"> تعداد عکس های انتخاب شده نباید بیشتر از 20 عدد باشد.</p>
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">متراژ</label>
-          <input
-            type="number"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">آگهی دهنده</label>
           <div className="flex md:flex-row flex-col justify-start items-center mr-5">
             <div>
-              <input
-                type="radio"
-                id="personal"
-                name="adMaker"
-                value="personal"
-              />
+              <input type="radio" id="personal" name="adMaker" value="personal" />
               <label htmlFor="personal" className="md:ml-10 mr-5">
                 شخصی
               </label>
             </div>
             <div>
-              <input
-                type="radio"
-                id="consultant"
-                name="adMaker"
-                value="consultant"
-              />
+              <input type="radio" id="consultant" name="adMaker" value="consultant" />
               <label htmlFor="consultant" className="md:ml-10 mr-5">
                 مشاور املاک
               </label>
@@ -93,7 +77,7 @@ const SubmitAd = () => {
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">ودیعه</label>
           <input
-            type="number"
+            type="text"
             placeholder="ودیعه به تومان"
             className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
           />
@@ -101,97 +85,60 @@ const SubmitAd = () => {
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">ودیعه و اجاره</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">مناسب برای</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">تعداد اتاق</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">سال ساخت</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">طبقه</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">آسانسور</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">پارکینگ</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">انباری</label>
-          <input
-            type="number"
-            placeholder="انتخاب"
-            className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500"
-          />
+          <input type="text" placeholder="انتخاب" className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500" />
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
-          <p className="text-right my-2 mr-3 text-darkYellow text-md">
-            {' '}
-            انتخاب سایر ویژگی ها و امکانات
-          </p>
+          <p className="text-right my-2 mr-3 text-darkYellow text-md"> انتخاب سایر ویژگی ها و امکانات</p>
         </div>
 
         <div className="mt-5 flex flex-col justify-center w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
           <label className="text-right my-2 mr-3">شماره موبایل</label>
           <p className="text-right my-2 mr-3 text-gray-600 text-sm">
             {' '}
-            توجه: لطفا پس از ثبت آگهی, از طریق هیچ پیامکی برای پرداخت وجه جهت
-            انتشار آگهی اقدام نکنید.
+            توجه: لطفا پس از ثبت آگهی, از طریق هیچ پیامکی برای پرداخت وجه جهت انتشار آگهی اقدام نکنید.
           </p>
           <p className="text-right my-2 mr-3 text-gray-600 text-sm">
             {' '}
-            کد تایید به شماره موبایل شما ارسال خواهد شد. تماس و چت نیز با این
-            شماره انجام میشود.
+            کد تایید به شماره موبایل شما ارسال خواهد شد. تماس و چت نیز با این شماره انجام میشود.
           </p>
           <input
-            type="number"
-            placeholder="شماره موبایل شما ( **** ***0922 )"
+            type="text"
+            placeholder=" **** *** 0922"
             className="w-full py-2 px-4 rounded-full shadow-md mx-auto text-gray-500 mt-5"
           />
           <div className="text-right mt-5 mr-5 flex justify-start items-center">
@@ -220,13 +167,10 @@ const SubmitAd = () => {
           <label className="text-right my-2 mr-3">توضیحات آگهی</label>
           <p className="text-right my-2 mr-3 text-gray-600 text-sm">
             {' '}
-            در توضیحات آگهی به مواردی مانند شرایط اجاره, جزییات و ویژگی های قابل
-            توجه, دسترسی های محلی و موقعیت قرارگیری ملک اشاره کنید.
+            در توضیحات آگهی به مواردی مانند شرایط اجاره, جزییات و ویژگی های قابل توجه, دسترسی های محلی و موقعیت قرارگیری ملک اشاره
+            کنید.
           </p>
-          <textarea
-            placeholder="توضیحات را بنویسید"
-            className="text-gray-600 px-5 py-2 rounded-md mt-5 shadow-md"
-          ></textarea>
+          <textarea placeholder="توضیحات را بنویسید" className="text-gray-600 px-5 py-2 rounded-md mt-5 shadow-md"></textarea>
         </div>
 
         <div className="mt-5 flex justify-end w-1/2 md:w-1/3 lg:w-1/4 mx-auto">
