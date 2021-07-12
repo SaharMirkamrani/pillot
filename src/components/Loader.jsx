@@ -1,13 +1,18 @@
-const Loader = () => {
-  let circleCommonClasses = 'h-5 w-5 bg-yellow rounded-full mx-auto mt-5';
+import React from 'react'
+import ContentLoader from 'react-content-loader'
 
-  return (
-    <div className="flex flex-row justify-center w-40 mx-auto">
-      <div className={`${circleCommonClasses} m-auto animate-bounce `}></div>
-      <div className={`${circleCommonClasses} m-auto animate-bounce200`}></div>
-      <div className={`${circleCommonClasses} m-auto animate-bounce400`}></div>
-    </div>
-  );
-};
+const ThreeDots = props => (
+  <ContentLoader
+    viewBox="0 0 400 160"
+    height={200}
+    width={500}
+    backgroundColor="transparent"
+    {...props}
+  >
+    <circle cx="150" cy="86" r="10" />
+    <circle cx="194" cy="86" r="8" />
+    <circle cx="238" cy="86" r="10" />
+  </ContentLoader>
+)
 
-export default Loader;
+export default ThreeDots

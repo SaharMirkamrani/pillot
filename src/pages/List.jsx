@@ -2,13 +2,14 @@ import BackgroundLanding from '../components/BackgroundLanding';
 import ListCards from '../components/ListCards';
 import SearchBar from '../components/SearchBar';
 import Sidebar from '../components/Sidebar';
-import { useState } from 'react';
+import { useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import LoadMoreButton from '../components/LoadMore';
 
 const List = () => {
   const [searchValue, setSearchValue] = useState('');
   const { pathname } = useLocation();
+
 
   return (
     <div className="min-h-screen">
@@ -21,9 +22,9 @@ const List = () => {
           <Sidebar searchValue={searchValue} category={'اجاره'} />
         )}
         {pathname.includes('category/buyandsell') ? (
-          <ListCards searchValue={searchValue} category={'فروش'} />
+          <ListCards searchValue={searchValue} />
         ) : (
-          <ListCards searchValue={searchValue} category={'اجاره'} />
+          <ListCards searchValue={searchValue} />
         )}
       </div>
       <LoadMoreButton />

@@ -1,24 +1,25 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback,useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { TiTimes } from 'react-icons/ti';
 import axios from 'axios';
+import {AdsContext} from "../ListProvider";
 
 const ChooseCity = () => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState('');
-  const [states, setStates] = useState([]);
   const [searchValue, setSearchValue] = useState('');
+  const {states,setStates} = useContext(AdsContext);
 
-  const getStates = async () => {
+  const getStates = useCallback(async () => {
     const headers = { token: 'test' };
     const response = await fetch('http://site.pillot.ir/admin/States/API/_apistate', { headers });
     const data = await response.json();
     setStates(data.data);
-  };
+  },[setStates]);
 
   useEffect(() => {
     getStates();
-  }, []);
+  }, [getStates]);
 
   return (
     <>
