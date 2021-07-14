@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import pic from '../assets/sample.jpg';
-import pic2 from '../assets/sample2.jpg';
+import { useState, useEffect } from 'react';
 import { RiShareLine } from 'react-icons/ri';
 import { RiBookmarkLine } from 'react-icons/ri';
 import { FiPhone } from 'react-icons/fi';
 import Loader from './Loader';
+import 'react-image-gallery/styles/css/image-gallery.css';
+import ImageGallery from 'react-image-gallery';
+import axios from 'axios';
 
 const AdDesc = ({ singleAd, loading }) => {
   const {
@@ -19,27 +20,18 @@ const AdDesc = ({ singleAd, loading }) => {
     house_floor,
     house_room
   } = singleAd;
+
   return (
     <>
-      <div class="mx-auto px-2 bg-white py-5 rounded-xl md:w-10/12 mb-10">
-        {loading ? (
-          <Loader />
-        ) : (
-          <div>
-            <div>
-              <div>
-                <img src={pic2} alt="singleAdPic" className="rounded-xl mx-auto md:w-7/12 w-10/12" />
-              </div>
-              <div className="flex justify-center mt-5">
-                <div className="sm:mt-0 m-0 w-90">
-                  <img src={pic} alt="singleAdPic" className="rounded-xl md:w-2/12 w-3/12 mx-auto" />
-                </div>
-                <div className="sm:mt-0 m-0 w-90">
-                  <img src={pic2} alt="singleAdPic" className="rounded-xl md:w-2/12 w-3/12 mx-auto" />
-                </div>
-              </div>
-            </div>
-            <div className="sm:w-full text-center sm:text-right mt-10 px-4 md:flex md:justify-around">
+      <div className="mx-auto px-2 bg-white py-5 rounded-xl md:w-10/12 mb-10">
+        <div>
+          <div className="lg:w-3/5 md:w-3/4 mx-auto md:mt-10">
+            <ImagesGallery />
+          </div>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div className="sm:w-full text-center md:text-right mt-10 px-4 md:flex md:justify-around">
               <div className="md:w-8/12 md:pr-20">
                 <h2 className="font-semibold text-xl my-1">{house_name}</h2>
                 <p className="text-gray-500 text-sm my-1">
@@ -71,11 +63,35 @@ const AdDesc = ({ singleAd, loading }) => {
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </>
   );
 };
 
 export default AdDesc;
+
+const ImagesGallery = () => {
+  const [images, setImages] = useState(null);
+
+  useEffect(() => {
+    let shouldCancel = false;
+
+    const call = async () => {
+      const response = await axios.get('https://google-photos-album-demo2.glitch.me/4eXXxxG3rYwQVf948');
+      if (!shouldCancel && response.data && response.data.length > 0) {
+        setImages(
+          response.data.map(url => ({
+            original: `${url}=w1024`,
+            thumbnail: `${url}=w100`
+          }))
+        );
+      }
+    };
+    call();
+    return () => (shouldCancel = true);
+  }, []);
+
+  return images ? <ImageGallery items={images} /> : null;
+};
