@@ -1,0 +1,34 @@
+if (path === 'buyandsell') {
+      console.log('buy');
+      let filtered = temp.filter(item => item.assignment_id.includes('فروش'));
+      setLoading(false);
+      setAds(filtered);
+    } else if (path === 'rentandmortgage') {
+      console.log('rent');
+      let filtered = temp.filter(item => item.assignment_id.includes('اجاره'));
+      setLoading(false);
+      setAds(filtered);
+    } else {
+      console.log('else');
+      setLoading(false);
+      setAds(data.data);
+    }
+
+    if (isPhoto || filteredBy) {
+      if (path !== 'buyandsell' && path !== 'rentandmortgage') {
+        setIsPhoto(false);
+        setFilteredBy('');
+      }
+
+      if (isPhoto) {
+        console.log('photo');
+        let filtered = temp.filter(item => item.house_image !== '');
+        setLoading(false);
+        setAds(filtered);
+      } else if (filteredBy) {
+        console.log('filterby');
+        let filtered = temp.filter(item => item.assignment_id.trim() === filteredBy || item.housetype_id === filteredBy);
+        setLoading(false);
+        setAds(filtered);
+      }
+    }

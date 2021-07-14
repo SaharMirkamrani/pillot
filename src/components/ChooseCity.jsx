@@ -8,7 +8,8 @@ const ChooseCity = () => {
   const [showModal, setShowModal] = useState(false);
   const [active, setActive] = useState('');
   const [searchValue, setSearchValue] = useState('');
-  const {states,setStates} = useContext(AdsContext);
+  const [states, setStates] = useState([]);
+  const {state: activeState, setState: setActiveState} = useContext(AdsContext);
 
   const getStates = useCallback(async () => {
     const headers = { token: 'test' };
@@ -28,7 +29,8 @@ const ChooseCity = () => {
         className="px-3 py-1 mr-10 focus:outline-none rounded-md border-2 text-gray-500 hover:text-gray-700 transition duration-150 hover:border-gray-300"
         onClick={() => setShowModal(true)}
       >
-        تهران
+        {activeState ? activeState : "انتخاب شهر"}
+        
       </button>
 
       {showModal ? (
@@ -74,11 +76,11 @@ const ChooseCity = () => {
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    setActive(state.state_name);
+                                    setActiveState(state.state_name);
                                     setShowModal(false);
                                   }}
                                   className={`${
-                                    active === state.state_name
+                                    activeState === state.state_name
                                       ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
                                       : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
                                   }`}
@@ -103,11 +105,11 @@ const ChooseCity = () => {
                               <button
                                 type="button"
                                 onClick={() => {
-                                  setActive(state.state_name);
+                                  setActiveState(state.state_name);
                                   setShowModal(false);
                                 }}
                                 className={`${
-                                  active === state.state_name
+                                  activeState === state.state_name
                                     ? `bg-darkYellow border-darkYellow hover:border-yellow hover:bg-yellow hover:text-gray-800 text-white m-2 border-2 focus:outline-none transition duration-150 py-2 px-4 rounded`
                                     : `bg-white border-2 m-2 border-yellow text-gray-500 focus:outline-none hover:text-gray-800 hover:border-darkYellow transition duration-150 py-2 px-4 rounded`
                                 }`}
@@ -165,6 +167,8 @@ const CitiesButtons = ({ setShowModal, active, setActive, searchValue, id }) => 
   useEffect(() => {
     getCities();
   }, [getCities]);
+
+  console.log(cities);
 
   return (
     <>

@@ -2,6 +2,7 @@ import { DashCard } from './DashAdCard';
 import { useContext, useEffect, useState } from 'react';
 import { AdsContext } from '../ListProvider';
 import Loader from './Loader';
+import { Link } from 'react-router-dom';
 
 const ListCards = ({ searchValue }) => {
   const [bookmarked, setBookmarked] = useState(true);
@@ -18,7 +19,11 @@ const ListCards = ({ searchValue }) => {
       ) : (
         ads
           .filter(ad => ad.house_name.includes(searchValue))
-          .map(ad => <DashCard key={ad.ad_id} bookmarked={bookmarked} {...ad} searchValue={searchValue} />)
+          .map(ad => (
+            <Link to={`/adPage/${ad.ad_id}`}>
+              <DashCard key={ad.ad_id} bookmarked={bookmarked} {...ad} searchValue={searchValue} />{' '}
+            </Link>
+          ))
       )}
     </div>
   );
