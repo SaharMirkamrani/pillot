@@ -15,7 +15,6 @@ const AdProvider = ({ children }) => {
   const [isUrgent, setIsUrgent] = useState(false);
   const [loading, setLoading] = useState(true);
   const [state, setState] = useState('');
-  const [singleAd, setSingleAd] = useState({})
 
   const { pathname } = useLocation();
   const path = pathname.split('/')[2];

@@ -4,19 +4,28 @@ import { TiTimes } from 'react-icons/ti';
 import { FiLogIn } from 'react-icons/fi';
 import ValidationError from './ValidationError';
 import axios from 'axios';
+import Loader from './LoginLoader';
+
+const codeValidateUrl = 'http://site.pillot.ir/admin/Customers/API/_codeValidate';
+const startLoaginReg = 'http://site.pillot.ir/admin/Customers/API/_startLoginRegister';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [mobileError, setMobileError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [loginValues, setLoginValues] = useState({ phone: '' });
+  const [phone, setPhone] = useState('');
   const [seconds, setSeconds] = useState(30);
+  const [isCodeSent, setIsCodeSent] = useState(false);
+  const [showCodeInput, setShowCodeInput] = useState(false);
+  const [code, setCode] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setLoginValues(prev => {
-      return { ...prev, [name]: value };
-    });
+  const handlePhoneChange = e => {
+    setPhone(e.target.value);
+  };
+
+  const handleCodeChange = e => {
+    setCode(e.target.value);
   };
 
   const validateMobilephone = input => {
@@ -49,39 +58,73 @@ const Login = () => {
   }, [seconds]);
 
   useEffect(() => {
-    handleCountDown();
-  }, [seconds]);
+    if (isCodeSent) {
+      handleCountDown();
+    }
+  }, [handleCountDown, isCodeSent]);
 
-  const handleFormSubmit = e => {
+  const handleFormSubmitStep1 = e => {
     e.preventDefault();
-    validateMobilephone(loginValues.phone);
-    // validatePassword(loginValues.password);
-    if (validateMobilephone(loginValues.phone) === false) return;
-    // if (validatePassword(loginValues.password) === false) return;
-    // setLoginValues({ phone: '' });
-
+    console.log(isCodeSent);
+    validateMobilephone(phone);
+    if (validateMobilephone(phone) === false) return;
+    setLoading(true);
     axios
       .post(
-        'http://site.pillot.ir/admin/Customers/API/_startloginregister',
+        startLoaginReg,
         {
-          mobile: loginValues.phone
+          mobile: phone
         },
         {
           headers: {
-            token: 'test',
-            'Access-Control-Allow-Origin': '*'
+            token: 'test'
           }
         }
       )
       .then(response => {
+        if (response.status === 200) {
+          setIsCodeSent(true);
+          handleCountDown();
+        }
+        setLoading(false);
         console.log(response.data);
       })
       .catch(error => {
         console.error(error);
       });
-    setLoginValues({ phone: '' });
+    setShowCodeInput(true);
+  };
 
-    handleCountDown();
+  const handleFormSubmitStep2 = e => {
+    e.preventDefault();
+    validatePassword(code);
+    if (validatePassword(code) === false) return;
+    setLoading(true);
+    axios
+      .post(
+        codeValidateUrl,
+        {
+          mobile: phone,
+          code: code
+        },
+        {
+          headers: {
+            token: 'test'
+          }
+        }
+      )
+
+      .then(response => {
+        if (response.status === 200) {
+          setIsCodeSent(true);
+        }
+        setLoading(false);
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    setShowCodeInput(true);
   };
 
   return (
@@ -111,78 +154,85 @@ const Login = () => {
                     </button>
                   </div>
 
-                  <form onSubmit={handleFormSubmit}>
+                  <form onSubmit={handleFormSubmitStep1}>
                     <div>
                       <label htmlFor="number" className="text-sm text-gray-600">
                         شماره موبایل
                       </label>
                       <input
-                        onChange={handleInputChange}
-                        value={loginValues.phone}
-                        name="phone"
+                        onChange={handlePhoneChange}
+                        value={phone}
                         required
                         type="text"
-                        className={`w-full mt-1  p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
+                        className={`w-full mt-1 p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
                         id="number"
                         // onBlurCapture={() =>
                         //   validateMobilephone(loginValues.phone)
                         // }
                       />
+
                       {mobileError && <ValidationError text={'لطفا شماره موبایل صحیح را وارد کنید.'} />}
+                      {loading && <Loader />}
                     </div>
-                    {/* <div className="flex justify-around items-center mt-1">
-                      {!token && (
+
+                    {showCodeInput && !loading ? (
+                      <div className="mb-4">
+                        <div className="mt-1">
+                          <div>
+                            <label htmlFor="password" className="text-sm text-gray-600">
+                              کد تایید
+                            </label>
+                            <input
+                              onChange={handleCodeChange}
+                              value={code}
+                              required
+                              type="text"
+                              className={`w-full m-1 p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
+                              id="password"
+                              onBlurCapture={() => validatePassword(code)}
+                            />
+                            {passwordError && <ValidationError text={'لطفا رمز عبور صحیح وارد کنید.'} />}
+                          </div>
+                        </div>
+
+                        <div className="flex justify-evenly items-center mt-2">
+                          <p className="text-sm text-gray-600">
+                            {' '}
+                            {`${seconds !== 0 ? `ارسال مجدد کد تائید در ${seconds}` : ` ارسال مجدد کد تایید`}`}
+                          </p>
+                          <button
+                            className={` ${seconds !== 0 && 'opacity-60 cursor-not-allowed'} mx-1 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150`}
+                            type="submit"
+                            onClick={handleFormSubmitStep1}
+                          >
+                            ارسال
+                          </button>
+                        </div>
+                      </div>
+                    ) : null}
+                    <hr />
+
+                    <div className="flex justify-center items-center mt-1">
+                      {!isCodeSent ? (
                         <button
-                          className={`mx-1 mb-2 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-md outline-none focus:outline-none ease-linear transition-all duration-150`}
+                          className={`
+                        mt-3 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
                           type="submit"
-                          onClick={handleFormSubmit}
+                          onClick={handleFormSubmitStep1}
                         >
-                        کد تائید
+                          مرحله بعد
+                        </button>
+                      ) : (
+                        <button
+                          className={`
+                          ${code.length !== 4 && 'opacity-60 cursor-not-allowed'}
+                        mt-3 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
+                          type="submit"
+                          onClick={handleFormSubmitStep2}
+                        >
+                          مرحله بعد
                         </button>
                       )}
-
-                      <div>
-                        <label
-                          htmlFor="password"
-                          className="text-sm text-gray-600"
-                        >
-                          {token ? 'رمز عبور' : 'کد تائید'}
-                        </label>
-                        <input
-                          onChange={handleInputChange}
-                          value={loginValues.password}
-                          required
-                          name="password"
-                          type="password"
-                          className={`w-full m-1 p-2 text-primary border border-gray-300 rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4 focus:ring-2 focus:ring-lightYellow focus:border-transparent`}
-                          id="password"
-                          onBlurCapture={() =>
-                            validatePassword(loginValues.password)
-                          }
-                        />
-                        {passwordError && (
-                          <ValidationError
-                            text={'لطفا رمز عبور صحیح وارد کنید.'}
-                          />
-                        )}
-                      </div>
-                    </div> */}
-
-                    <div className="flex justify-start flex-row items-center mt-2">
-                      <p className="text-sm text-gray-600"> ارسال مجدد کد تائید در {seconds}</p>
-                    </div>
-
-                    <div className="flex justify-end items-center mt-1">
-                      <button
-                        className={`
-                          // loginValues.password.length !== 4 &&
-                          // 'opacity-60 cursor-not-allowed'
-                        mt-3 bg-yellow text-white hover:bg-lightYellow font-semibold text-sm px-6 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150`}
-                        type="submit"
-                        onClick={handleFormSubmit}
-                      >
-                        ورود
-                      </button>
                     </div>
                   </form>
                 </div>
